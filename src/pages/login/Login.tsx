@@ -23,6 +23,7 @@ import {
   Alert
 } from '@mantine/core';
 import { Footer } from '../../components/Footer.tsx';
+import NavBar from '../../components/NavBar.tsx';
 
 const Login = ()=> {
   let navigate = useNavigate()
@@ -30,6 +31,11 @@ const Login = ()=> {
     title: "string",
     links: [{ label: "string", link: "string" }]
   }]
+  const tabInfo = [
+    {label: 'Public', link: '/public'},
+    {label: 'Private', link: 'auth/private'},
+    {label: 'Login', link: '/login'}
+  ]
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -94,6 +100,7 @@ const Login = ()=> {
   return (
     <>
     <Container size={420} my={40}>
+      <NavBar links={tabInfo} />
       <Title
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
