@@ -22,15 +22,10 @@ import {
   Button,
   Alert
 } from '@mantine/core';
-import { Footer } from '../../components/Footer.tsx';
 import NavBar from '../../components/NavBar.tsx';
 
 const Login = ()=> {
   let navigate = useNavigate()
-  let data = [{
-    title: "string",
-    links: [{ label: "string", link: "string" }]
-  }]
   const tabInfo = [
     {label: 'Public', link: '/public'},
     {label: 'Private', link: 'auth/private'},
@@ -161,7 +156,6 @@ const Login = ()=> {
         </Button>
       </Paper>
     </Container>
-    <Footer data={data} />
     </>
   );
 }
