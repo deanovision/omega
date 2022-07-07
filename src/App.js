@@ -3,6 +3,7 @@ import Login from './pages/login/Login.tsx';
 import {Routes, Route} from 'react-router-dom'
 import { Footer } from './components/Footer.tsx'
 import Home from './pages/home/Home';
+import SignUp from './pages/signup/SignUp.tsx';
 
 function App() {
   let data = [{
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path={"/"} />
         <Route element={<Login />} path={"/auth/login"} />
+        <Route element={<SignUp />} path={"/auth/signup"} />
       </Routes>
     <Footer data={data} />
     </div>
