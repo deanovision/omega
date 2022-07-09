@@ -1,9 +1,10 @@
 import React from 'react';
-import { createStyles, Card, Avatar, Text, Group, Button } from '@mantine/core';
+import { createStyles, Card, Avatar, Text, Group } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    maxWidth: "300px"
   },
 
   avatar: {
@@ -20,7 +21,8 @@ interface UserCardImageProps {
 }
 
 function UserCard({ image, avatar, name, job, stats }: UserCardImageProps) {
-  const { classes, theme } = useStyles();
+//removed theme from line below
+  const { classes} = useStyles();
 
   const items = stats.map((stat) => (
     <div key={stat.label}>
@@ -46,7 +48,7 @@ function UserCard({ image, avatar, name, job, stats }: UserCardImageProps) {
       <Group mt="md" position="center" spacing={30}>
         {items}
       </Group>
-      <Button
+      {/* <Button
         fullWidth
         radius="md"
         mt="xl"
@@ -54,7 +56,7 @@ function UserCard({ image, avatar, name, job, stats }: UserCardImageProps) {
         color={theme.colorScheme === 'dark' ? undefined : 'dark'}
       >
         Follow
-      </Button>
+      </Button> */}
     </Card>
   );
 }
