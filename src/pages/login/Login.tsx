@@ -28,8 +28,8 @@ const Login = ()=> {
   let navigate = useNavigate()
   const tabInfo = [
     {label: 'Public', link: '/public'},
-    {label: 'Private', link: 'auth/private'},
-    {label: 'Login', link: '/login'}
+    {label: 'Private', link: '/auth/private'},
+    {label: 'Login', link: '/auth/login'}
   ]
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
@@ -94,8 +94,8 @@ const Login = ()=> {
   }
   return (
     <>
+    <NavBar links={tabInfo} />
     <Container size={420} my={40}>
-      <NavBar links={tabInfo} />
       <Title
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
