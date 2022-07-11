@@ -1,11 +1,19 @@
 import React from 'react';
-import { createStyles, Text, Avatar, Group } from '@mantine/core';
+import { createStyles, Text, Avatar, Group, Grid } from '@mantine/core';
+import { ThumbUp, ThumbDown, RotateClockwise2, KeyboardShow, LetterF } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   body: {
     paddingLeft: 54,
     paddingTop: theme.spacing.sm,
+    textAlign: "left"
   },
+  postedAt: {
+    textAlign: "left"
+  },
+  engagement :{
+    paddingTop: 10
+  }
 }));
 
 interface CommentSimpleProps {
@@ -25,7 +33,7 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
         <Avatar src={author.image} alt={author.name} radius="xl" />
         <div>
           <Text size="sm">{author.name}</Text>
-          <Text size="xs" color="dimmed">
+          <Text className={classes.postedAt} size="xs" color="dimmed">
             {postedAt}
           </Text>
         </div>
@@ -33,6 +41,24 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
       <Text className={classes.body} size="sm">
         {body}
       </Text>
+      <Grid className={classes.engagement}>
+        <Grid.Col md={6} lg={3}>
+          <KeyboardShow />
+        </Grid.Col>
+        <Grid.Col md={6} lg={3}>
+          <ThumbUp />
+        </Grid.Col>
+        <Grid.Col md={6} lg={3}>
+          <ThumbDown />
+        </Grid.Col>
+        <Grid.Col md={6} lg={3}>
+          <RotateClockwise2 />
+        </Grid.Col>
+      </Grid>
+      
+      
+      
+      
     </div>
   );
 }
