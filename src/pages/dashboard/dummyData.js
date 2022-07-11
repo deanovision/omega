@@ -6,7 +6,7 @@ export const fetchUser = async (setUser) =>{
     let newUser = await response.data
     let getImage = await axios.get("https://random-data-api.com/api/lorem_flickr/random_lorem_flickr")
     let newImage = getImage.data.image
-    console.log(newUser)
+    // console.log(newUser)
     setUser({
         avatar: newUser.avatar,
         image: newImage,
@@ -14,6 +14,15 @@ export const fetchUser = async (setUser) =>{
         job: newUser.employment.title,
         stats: [{label: "followers" , value: "500"}]
     })
+}
+
+export const fetchUsers = async (setUsers) =>{
+    let response = await axios.get("https://randomuser.me/api/?results=25")
+    let newUsers = await response.data.results
+    // let getImage = await axios.get("https://random-data-api.com/api/lorem_flickr/random_lorem_flickr")
+    // let newImage = getImage.data.image
+    console.log(newUsers)
+    setUsers(newUsers)
 }
 
 export const relativeTime = (time) => {
