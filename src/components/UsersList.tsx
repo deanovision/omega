@@ -57,7 +57,7 @@ function UsersList({ data }: UsersStackProps) {
         required
         icon={<Search size={14} />}
       />
-      <Table sx={{ minWidth: 800 }} verticalSpacing="md">
+      <Table verticalSpacing="lg">
         <tbody>{rows}</tbody>
       </Table>
     </ScrollArea>
