@@ -37,7 +37,7 @@ function UserCard({ image, avatar, name, job, stats }: UserCardImageProps) {
 
   return (
     <Card withBorder p="xl" radius="md" className={classes.card}>
-      <Card.Section sx={{ backgroundImage: `url(${image})`, height: 140 }} />
+      {/* <Card.Section sx={{ backgroundImage: `url(${image})`, height: 140 }} /> */}
       <Avatar src={avatar} size={80} radius={80} mx="auto" mt={-30} className={classes.avatar} />
       <Text align="center" size="lg" weight={500} mt="sm">
         {name}
