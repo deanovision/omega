@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import SignUp from './pages/signup/SignUp.tsx';
 import Dashboard from './pages/dashboard/Dashboard';
 import FindUsers from './pages/findusers/FindUsers'
+import UserProfile from './pages/userprofile/UserProfile'
 
 function App() {
   let data = [{
@@ -20,6 +21,7 @@ function App() {
         <Route element={<FindUsers />} path={"/search-users"} />
         <Route element={<Login />} path={"/auth/login"} />
         <Route element={<SignUp />} path={"/auth/signup"} />
+        <Route element={<UserProfile />} path={"/auth/user"} />
       </Routes>
     <Footer data={data} />
     </div>
