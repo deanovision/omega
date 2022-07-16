@@ -1,11 +1,12 @@
 import { 
     GoogleAuthProvider, 
     getRedirectResult, 
-    sendPasswordResetEmail 
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    signOut
 } from "firebase/auth";
-
 import { auth } from "./config";
-
+import {getUserById} from './userModel'
 export const redirectResult = (auth)=> {
     getRedirectResult(auth)
     .then((result) => {
@@ -13,12 +14,12 @@ export const redirectResult = (auth)=> {
      const user = result.user;
      console.log('user', user)
      console.log("token", token)
+     return user
    }).catch((error) => {
      const errorCode = error.code;
      const errorMessage = error.message;
-     const email = error.customData.email;
      const credential = GoogleAuthProvider.credentialFromError(error);
-     console.log(errorCode, errorMessage, email, credential)
+     console.log(errorCode, errorMessage, credential)
    });
 }
 
@@ -34,3 +35,29 @@ export const resetPassword = (auth, email, setError) => {
     });
 
 }
+
+export const getAuthorizedUser = () => {
+
+  onAuthStateChanged(auth, (user) => {
+        if (user) {
+          getUserById(user)
+            .then(res => {
+              console.log(res)
+              return res
+            })
+            .catch(err => console.log(err.message))
+        } 
+        else {
+          console.log("user is signed out")
+        }
+      });
+}
+export const logout = (e, setAuthorized) => {
+    e.preventDefault()
+    signOut(auth).then((res) => {
+      setAuthorized(false)
+      console.log(res, "success")
+    }).catch((error) => {
+      console.log(error, "error")
+    });
+  }

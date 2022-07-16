@@ -1,6 +1,6 @@
 import CommentSimple from './CommentSimple.tsx'
 import { loremIpsum, relativeTime } from '../pages/dashboard/dummyData'
-import { createStyles, Card } from '@mantine/core';
+import { createStyles, Card, Divider } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -28,11 +28,12 @@ function CommentListSimple({comments}) {
                    }
                  }
                  />
+                 <Divider my="sm" />
            </div>
       )
     })
     return(
-        <Card p="xl" radius="sm" className={classes.card}>
+        <Card withBorder p="xl" radius="sm" className={classes.card}>
           {commentList}
         </Card>
     )

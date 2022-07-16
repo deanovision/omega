@@ -14,9 +14,9 @@ function Dashboard() {
         .catch(err => console.log(err))
     },[])
     const tabInfo = [
-        {label: 'Public', link: '/public'},
-        {label: 'Dashboard', link: '/dashboard'},
-        {label: 'Login', link: '/auth/login'}
+        {label: 'Home', link: '/auth/dashboard'},
+        {label: 'Profile', link: '/auth/user'},
+        {label: 'Settings', link: '/auth/settings'}
       ]
     return(
         <>

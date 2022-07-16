@@ -3,7 +3,7 @@ import UserCardPlusBackground from '../../components/UserCardPlusBackground.tsx'
 import backgroundImage from '../../assets/background1.jpg'
 import CommentListSimple from '../../components/CommentListSimple'
 import {fetchUser, fetchComments} from '../dashboard/dummyData'
-import NavBar from '../../components/NavBar.tsx'
+import NavBarZeroMargin from '../../components/NavBarZeroMargin.tsx'
 
 function UserProfile() {
     const [user, setUser] = useState({})
@@ -18,14 +18,14 @@ function UserProfile() {
     }, [])
     
     const tabInfo = [
-        {label: 'Public', link: '/public'},
-        {label: 'Dashboard', link: '/dashboard'},
+        {label: 'Home', link: '/dashboard'},
+        {label: 'Profile', link: '/auth/user'},
         {label: 'Login', link: '/auth/login'}
       ]
 
     return( 
         <>
-        <NavBar mb={0} links={tabInfo} />
+        <NavBarZeroMargin links={tabInfo} />
           {
             user? 
             <UserCardPlusBackground

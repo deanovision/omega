@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import AuthorizedUserContext from '../contexts/AuthorizedUserContext'
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, Image, Button } from '@mantine/core';
+import { logout } from '../firebase/authorizeUsers';
 import { useBooleanToggle } from '@mantine/hooks';
+import AuthorizedUserContext from '../contexts/AuthorizedUserContext';
 import {useNavigate} from 'react-router-dom'
 import logo from '../assets/omegalogo1.png'
-import { logout } from '../firebase/authorizeUsers';
-import ToggleColorScheme from './ToggleColorScheme.tsx';
+import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
@@ -88,7 +88,7 @@ interface HeaderResponsiveProps {
   mb: Number
 }
 
-export function NavBar({ links, mb }: HeaderResponsiveProps) {
+export function NavBarZeroMargin({ links, mb }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -110,20 +110,21 @@ export function NavBar({ links, mb }: HeaderResponsiveProps) {
       {link.label}
     </a>
   ));
-  
+
   const handleAuth = (e) => {
     isAuthorized ? logout(e, setIsAuthorized) : navigate("../auth/login", {replace: true})
   }
-  console.log("Authenticated?", isAuthorized)
+
   return (
     
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} mb={0} className={classes.root}>
       <Container className={classes.header}>
       <Image
         className={classes.logo}
         src={logo}
         alt="Omega Logo"
       />
+      
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
@@ -149,4 +150,4 @@ export function NavBar({ links, mb }: HeaderResponsiveProps) {
     </Header>
   );
 }
-export default NavBar
+export default NavBarZeroMargin
