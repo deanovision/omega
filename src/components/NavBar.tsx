@@ -79,13 +79,17 @@ const useStyles = createStyles((theme) => ({
 
 interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
+  mb: Number
 }
 
-export function NavBar({ links }: HeaderResponsiveProps) {
+export function NavBar({ links, mb }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   let navigate = useNavigate()
+  function addMargin() {
+    return mb? mb : 120
+  }
 
   const items = links.map((link) => (
     <a
@@ -104,7 +108,7 @@ export function NavBar({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} mb={()=> addMargin()} className={classes.root}>
       <Container className={classes.header}>
         <Group spacing={5} className={classes.links}>
           {items}

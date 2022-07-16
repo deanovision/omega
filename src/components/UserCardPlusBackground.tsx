@@ -27,9 +27,9 @@ function UserCardPlusBackground({ image, avatar, name, job}: UserCardImageProps)
 
 
   return (
-    <Card withBorder p="xl" radius="md" className={classes.card}>
+    <Card withBorder p="xl" radius="sm" className={classes.card}>
       <Card.Section sx={{ backgroundImage: `url(${image})`, height: 220 }} />
-      <Avatar src={avatar} size={120} radius={80} mx="auto" mt={-100} className={classes.avatar} />
+      <Avatar src={avatar} size={120} radius={50} mx="auto" mt={-100} className={classes.avatar} />
       <Text align="center" size="lg" weight={500} mt="sm">
         {name}
       </Text>
