@@ -85,10 +85,9 @@ const useStyles = createStyles((theme) => ({
 
 interface HeaderResponsiveProps {
   links: { link: string; label: string }[];
-  mb: Number
 }
 
-export function NavBarZeroMargin({ links, mb }: HeaderResponsiveProps) {
+export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
