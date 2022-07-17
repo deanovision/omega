@@ -39,7 +39,7 @@ const Login = ()=> {
         console.log("Login user by ID", getUserById(user))
         getUserById(user)
           .then(res => {
-            res === undefined? navigate("../setup-profile", {replace: true}) : navigate("../auth/private", {replace: true})
+            res === undefined? navigate("../setup-profile", {replace: true}) : navigate("../auth/dashboard", {replace: true})
           })
           .catch(err => console.log(err.message))
       } 
