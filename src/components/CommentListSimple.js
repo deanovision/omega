@@ -4,7 +4,7 @@ import { createStyles, Card, Divider } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     card: {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "#f2f2f4",
       maxWidth: "820px",
       margin: "auto",
 
@@ -33,7 +33,7 @@ function CommentListSimple({comments}) {
       )
     })
     return(
-        <Card withBorder p="xl" radius="sm" className={classes.card}>
+        <Card shadow="xl" withBorder p="xl" radius="sm" className={classes.card}>
           {commentList}
         </Card>
     )
