@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword, 
   signInWithRedirect,
   onAuthStateChanged, 
-  signOut, } from "firebase/auth";
+  } from "firebase/auth";
 import {
   TextInput,
   PasswordInput,
@@ -65,14 +65,6 @@ const Login = ()=> {
       setError(errorMessage)
       console.log(errorCode, errorMessage)
       alert(errorMessage)
-    });
-  }
-  const logout = (e) => {
-    e.preventDefault()
-    signOut(auth).then((res) => {
-      console.log(res, "success")
-    }).catch((error) => {
-      console.log(error, "error")
     });
   }
   const handleSubmit = (e)=> {
@@ -147,12 +139,6 @@ const Login = ()=> {
           fullWidth mt="xl" 
           color="dark">
           Log in with Google
-        </Button>
-        <Button 
-          onClick={e => logout(e)} 
-          fullWidth mt="xl" 
-          color="dark">
-          Log Out
         </Button>
       </Paper>
     </Container>

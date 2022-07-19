@@ -20,11 +20,6 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     alignItems:"center"
   },
-  profileHeader: {
-    display: "flex",
-    alignItems:"center"
-  },
-
 }));
 
 function UserProfile() {
@@ -43,7 +38,7 @@ function UserProfile() {
     const tabInfo = [
         {label: 'Home', link: '/auth/dashboard'},
         {label: 'Profile', link: '/auth/user'},
-        {label: 'Login', link: '/auth/login'}
+        {label: 'Find People', link: '/auth/search-users'}
       ]
       const userLinks = [
         {label: 'My Posts', link: '/auth/dashboard'},
@@ -54,7 +49,7 @@ function UserProfile() {
     return( 
       <>
         <NavBarZeroMargin links={tabInfo} />
-        <Container className={classes.container} size="xl">
+        <Container mt={20} className={classes.container} size="xl">
           <Container>
             <Card className={classes.profileHeader} withBorder p="xl" radius="sm">
             <Avatar radius={100} size={125} src={user?.avatar} alt={user?.name} />

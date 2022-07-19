@@ -39,7 +39,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
-    maxWidth: '100%'
+    // maxWidth: '100%'
   },
 
   links: {
@@ -113,13 +113,13 @@ export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
   ));
 
   const handleAuth = (e) => {
-    isAuthorized ? logout(e, setIsAuthorized) : navigate("../auth/login", {replace: true})
+    isAuthorized ? logout(e, setIsAuthorized) : navigate("../login", {replace: true})
   }
 
   return (
     
     <Header height={HEADER_HEIGHT} mb={0} className={classes.root}>
-      <Container className={classes.header}>
+      <Container size="xl" className={classes.header}>
       <Image
         className={classes.logo}
         src={logo}

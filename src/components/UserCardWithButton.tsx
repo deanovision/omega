@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStyles, Avatar, Text, Group } from '@mantine/core';
 import { Users, Notebook} from 'tabler-icons-react';
-import PostModal from './PostModal.tsx'
 
 const useStyles = createStyles((theme) => ({
   icon: {
@@ -11,11 +10,6 @@ const useStyles = createStyles((theme) => ({
   name: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
   },
-//   container: {
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center"
-//   },
 }));
 
 interface UserInfoIconsProps {
