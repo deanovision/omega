@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button, Group, useMantineTheme } from '@mantine/core';
-import Post from './Post.tsx'
+import AddComment from './AddComment.tsx'
 
 function PostModal() {
   const [opened, setOpened] = useState(false);
@@ -16,7 +16,7 @@ function PostModal() {
         withCloseButton={false}
         onClose={() => setOpened(false)}
         >
-          <Post />
+          <AddComment />
         </Modal>
         <Group position="center">
             <Button onClick={() => setOpened(true)}>Create a post</Button>

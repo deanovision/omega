@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { createStyles, Text, Avatar, Group, Card, ActionIcon } from '@mantine/core';
 import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
-
+import AddComment from './AddComment.tsx';
 const useStyles = createStyles((theme) => ({
   body: {
     paddingTop: theme.spacing.sm,
@@ -24,6 +24,12 @@ const useStyles = createStyles((theme) => ({
   },
   liked: {
     color: theme.colors.blue[5]
+  },
+  visible: {
+    display: "block"
+  },
+  hidden: {
+    display: "none"
   }
 }));
 
@@ -38,9 +44,14 @@ interface CommentSimpleProps {
 
 function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
   const [thumbsUp, setThumbsUp] = useState(false)
+  const [visible, setVisible] = useState(false)
+  // console.log(addingComment)
   function handleEngagement() {
    return thumbsUp ? classes.liked : "icons"
   }
+  // function handleComments() {
+  //   return addingComment ? "visible" : "hidden"
+  //  }
   const { classes } = useStyles();
   return (
     <Card withBorder p="xl" radius="sm" className={classes.card}>
@@ -58,7 +69,7 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
       </Text>
       <Group className={classes.engagement} spacing="xl">
         <ActionIcon size="xl" radius="lg">
-          <Message2 strokeWidth={1} size={36} className={classes.icons} />
+          <Message2 strokeWidth={1} size={36} className={classes.icons} onClick={()=> setVisible(!visible)} />
         </ActionIcon>
         <ActionIcon size="xl" radius="lg">
           <ThumbUp strokeWidth={1} size={36} className={handleEngagement()} onClick={()=> setThumbsUp(!thumbsUp) } />
@@ -67,6 +78,7 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
           <RotateClockwise2 strokeWidth={1} size={36} className={classes.icons} />
         </ActionIcon>        
       </Group>
+      <AddComment visible={visible} setVisible={setVisible} />
       </Card>
   );
 }
