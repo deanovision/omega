@@ -8,6 +8,7 @@ const AuthorizedUserContext = createContext()
 export const AuthorizedUserProvider = ({children}) => {
   const [authUser, setAuthUser] = useState({})
   const [isAuthorized, setIsAuthorized] = useState(false)
+  const [colorScheme, setColorScheme] = useState('light');
 
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
@@ -28,7 +29,17 @@ export const AuthorizedUserProvider = ({children}) => {
   }, [setAuthUser, setIsAuthorized])
 
     return (
-        <AuthorizedUserContext.Provider value={{authUser, setAuthUser, isAuthorized, setIsAuthorized}}>{children}</AuthorizedUserContext.Provider>
+        <AuthorizedUserContext.Provider 
+        value={{
+          authUser, 
+          setAuthUser, 
+          isAuthorized, 
+          setIsAuthorized, 
+          colorScheme, 
+          setColorScheme
+          }}>
+            {children}
+        </AuthorizedUserContext.Provider>
     )
 }
 

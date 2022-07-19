@@ -6,12 +6,13 @@ import {useNavigate} from 'react-router-dom'
 import logo from '../assets/omegalogo1.png'
 import { logout } from '../firebase/authorizeUsers';
 import ToggleColorScheme from './ToggleColorScheme.tsx';
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 75;
 
 const useStyles = createStyles((theme) => ({
   root: {
     position: 'relative',
     zIndex: 1,
+    backgroundColor: theme.colorScheme === 'dark' ?  "#212227" : theme.colors.white
   },
   logo: {
     maxWidth: "120px",
@@ -38,6 +39,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
+    maxWidth: '100%'
   },
 
   links: {

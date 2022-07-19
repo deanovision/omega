@@ -1,15 +1,25 @@
 import React from 'react';
-import { createStyles, Card, Avatar, Text } from '@mantine/core';
+import { createStyles, Card } from '@mantine/core';
+// import { Users } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    maxWidth: "820px",
+    margin: "auto",
+    borderRadius: "0px"
+  },
+  cardDetails: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "#f2f2f4",
     maxWidth: "820px",
     margin: "auto"
   },
 
   avatar: {
     border: `2px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+  },
+  userDetails: {
+    marginLeft: "auto",
   },
 }));
 
@@ -27,15 +37,15 @@ function UserCardPlusBackground({ image, avatar, name, job}: UserCardImageProps)
 
 
   return (
-    <Card withBorder p="xl" radius="sm" className={classes.card}>
+    <Card p="xl" className={classes.card}>
       <Card.Section sx={{ backgroundImage: `url(${image})`, height: 220 }} />
-      <Avatar src={avatar} size={120} radius={100} mx="auto" mt={-130} className={classes.avatar} />
+      {/* <Avatar src={avatar} size={160} radius={100} mx="auto" mt={-130} className={classes.avatar} />
       <Text align="center" size="lg" weight={500} mt="sm">
         {name}
       </Text>
       <Text align="center" size="sm" color="dimmed">
         {job}
-      </Text>
+      </Text> */}
     </Card>
   );
 }

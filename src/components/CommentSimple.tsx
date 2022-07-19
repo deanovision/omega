@@ -1,22 +1,35 @@
 import React, {useState} from 'react';
-import { createStyles, Text, Avatar, Group, Grid, ActionIcon } from '@mantine/core';
-import { ThumbUp, RotateClockwise2, Keyboard } from 'tabler-icons-react';
-
+import { createStyles, Text, Avatar, Group, Card, ActionIcon } from '@mantine/core';
+import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
+import AddComment from './AddComment.tsx';
 const useStyles = createStyles((theme) => ({
   body: {
-    paddingLeft: 54,
     paddingTop: theme.spacing.sm,
     textAlign: "left"
+  },
+  card: {
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    maxWidth: "820px",
+    margin: "auto",
+
   },
   postedAt: {
     textAlign: "left"
   },
   engagement :{
-    paddingLeft: 54,
     paddingTop: 10
   },
+  icons: {
+    color: theme.colorScheme === 'dark' ? "#FFF" : theme.colors.gray[7]    
+  },
   liked: {
-    color: "green"
+    color: theme.colors.blue[5]
+  },
+  visible: {
+    display: "block"
+  },
+  hidden: {
+    display: "none"
   }
 }));
 
@@ -31,14 +44,19 @@ interface CommentSimpleProps {
 
 function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
   const [thumbsUp, setThumbsUp] = useState(false)
+  const [visible, setVisible] = useState(false)
+  // console.log(addingComment)
   function handleEngagement() {
-   return thumbsUp ? classes.liked : ""
+   return thumbsUp ? classes.liked : "icons"
   }
+  // function handleComments() {
+  //   return addingComment ? "visible" : "hidden"
+  //  }
   const { classes } = useStyles();
   return (
-    <div>
+    <Card withBorder p="xl" radius="sm" className={classes.card}>
       <Group>
-        <Avatar src={author.image} alt={author.name} radius="xl" />
+        <Avatar size="lg" src={author.image} alt={author.name} radius="xl" />
         <div>
           <Text size="sm">{author.name}</Text>
           <Text className={classes.postedAt} size="xs" color="dimmed">
@@ -49,28 +67,19 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
       <Text className={classes.body} size="sm">
         {body}
       </Text>
-      <Grid className={classes.engagement}>
-        <Grid.Col md={8} lg={1}>
-          <ActionIcon radius="lg">
-            <Keyboard />
-          </ActionIcon>
-        </Grid.Col>
-        <Grid.Col md={8} lg={1}>
-          <ActionIcon radius="lg">
-            <ThumbUp className={handleEngagement()} onClick={()=> setThumbsUp(!thumbsUp) } />
-          </ActionIcon>
-        </Grid.Col>
-        <Grid.Col md={8} lg={1}>
-          <ActionIcon radius="lg">
-            <RotateClockwise2 />
-          </ActionIcon>
-        </Grid.Col>
-      </Grid>
-      
-      
-      
-      
-    </div>
+      <Group className={classes.engagement} spacing="xl">
+        <ActionIcon size="xl" radius="lg">
+          <Message2 strokeWidth={1} size={36} className={classes.icons} onClick={()=> setVisible(!visible)} />
+        </ActionIcon>
+        <ActionIcon size="xl" radius="lg">
+          <ThumbUp strokeWidth={1} size={36} className={handleEngagement()} onClick={()=> setThumbsUp(!thumbsUp) } />
+        </ActionIcon>
+        <ActionIcon size="xl" radius="lg">
+          <RotateClockwise2 strokeWidth={1} size={36} className={classes.icons} />
+        </ActionIcon>        
+      </Group>
+      <AddComment visible={visible} setVisible={setVisible} />
+      </Card>
   );
 }
 export default CommentSimple
