@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { createStyles, Text, Avatar, Group, Card, ActionIcon } from '@mantine/core';
 import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
+import { useClickOutside } from '@mantine/hooks';
 import AddComment from './AddComment.tsx';
+
 const useStyles = createStyles((theme) => ({
   body: {
     paddingTop: theme.spacing.sm,
@@ -45,13 +47,11 @@ interface CommentSimpleProps {
 function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
   const [thumbsUp, setThumbsUp] = useState(false)
   const [visible, setVisible] = useState(false)
-  // console.log(addingComment)
+  const clickOutsideRef = useClickOutside(() => setVisible(false));
+
   function handleEngagement() {
    return thumbsUp ? classes.liked : "icons"
   }
-  // function handleComments() {
-  //   return addingComment ? "visible" : "hidden"
-  //  }
   const { classes } = useStyles();
   return (
     <Card withBorder p="xl" radius="sm" className={classes.card}>
@@ -69,13 +69,33 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
       </Text>
       <Group className={classes.engagement} spacing="xl">
         <ActionIcon size="xl" radius="lg">
-          <Message2 strokeWidth={1} size={36} className={classes.icons} onClick={()=> setVisible(!visible)} />
+          <div ref={clickOutsideRef}>
+            <Message2 
+              strokeWidth={1} 
+              size={36} 
+              className={classes.icons} 
+              onClick={()=> setVisible(!visible)}
+              />
+            </div>
         </ActionIcon>
         <ActionIcon size="xl" radius="lg">
-          <ThumbUp strokeWidth={1} size={36} className={handleEngagement()} onClick={()=> setThumbsUp(!thumbsUp) } />
+          <div>
+            <ThumbUp 
+              strokeWidth={1} 
+              size={36} 
+              className={handleEngagement()} 
+              onClick={()=> setThumbsUp(!thumbsUp) } 
+              />
+          </div>
         </ActionIcon>
         <ActionIcon size="xl" radius="lg">
-          <RotateClockwise2 strokeWidth={1} size={36} className={classes.icons} />
+        <div>
+          <RotateClockwise2 
+            strokeWidth={1} 
+            size={36} 
+            className={classes.icons} 
+            />
+        </div>
         </ActionIcon>        
       </Group>
       <AddComment visible={visible} setVisible={setVisible} />

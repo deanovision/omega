@@ -34,8 +34,8 @@ function App() {
               <Route element={<Dashboard />} path={"dashboard"} />
               <Route element={<FindUsers />} path={"search-users"} />
             </Route>
-            <Route element={<Login />} path={"/auth/login"} />
-            <Route element={<SignUp />} path={"/auth/signup"} />
+            <Route element={<Login />} path={"/login"} />
+            <Route element={<SignUp />} path={"/signup"} />
           </Routes>
           <Footer data={data} />
         </div>
