@@ -8,7 +8,7 @@ import {
   createStyles, 
   TextInput 
 } from '@mantine/core';
-import { loremIpsum } from '../pages/dashboard/dummyData';
+import { loremIpsum } from '../utils/dummyData'
 import { Search } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({

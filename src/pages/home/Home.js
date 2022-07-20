@@ -1,5 +1,5 @@
 import Hero from '../../components/Hero.tsx'
-import NavBar from '../../components/NavBar.tsx'
+import NavBarZeroMargin from '../../components/NavBarZeroMargin.tsx'
 
 function Home (){
   const tabInfo = [
@@ -9,7 +9,7 @@ function Home (){
   ]
     return (
         <>
-          <NavBar links={tabInfo} />
+          <NavBarZeroMargin links={tabInfo} />
           <Hero />
         </>
     )

@@ -1,11 +1,12 @@
 import React from 'react'
 import NavBar from '../../components/NavBar.tsx';
 import {useEffect, useState} from 'react'
-import { fetchUser, fetchComments } from './dummyData'
+import { fetchUser, fetchComments } from '../../utils/dummyData'
 import { Grid, Container, Card } from '@mantine/core';
-import UserProfileTabs from '../../components/UserProfileTabs.tsx';
+import DashboardTabs from '../../components/DashboardTabs.js';
 import CommentListSimple from '../../components/CommentListSimple';
 import UserCardWithButton from '../../components/UserCardWithButton.tsx';
+import TrendingNews from './TrendingNews';
 
 function Dashboard() {
     const [user, setUser] = useState({})
@@ -45,7 +46,9 @@ function Dashboard() {
                     </Card>
                 </Grid.Col>
                 <Grid.Col span={18}>
-                <UserProfileTabs timeline={<CommentListSimple comments={comments} />} />
+                <DashboardTabs 
+                timeline={<CommentListSimple comments={comments} />}
+                trendingNewsInfo={<TrendingNews />} />
                 </Grid.Col>
             </Grid>
         </Container>
