@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react'
 import CommentListSimple from '../../components/CommentListSimple'
-import {fetchUser, fetchComments} from '../dashboard/dummyData'
+import {fetchUser, fetchComments} from '../../utils/dummyData'
 import NavBarZeroMargin from '../../components/NavBarZeroMargin.tsx'
 import UserProfileMenu from '../../components/UserProfileMenu.tsx'
 import UserProfileTabs from '../../components/UserProfileTabs.tsx'
 import { Notebook, Users } from 'tabler-icons-react'
-import { loremIpsum } from '../dashboard/dummyData'
+import { loremIpsum } from '../../utils/dummyData'
 import {Container, Group, createStyles, Avatar, Card, Text} from '@mantine/core'
 import SimpleDrawer from '../../components/SimpleDrawer'
 

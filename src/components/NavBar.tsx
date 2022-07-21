@@ -124,6 +124,7 @@ export function NavBar({ links}: HeaderResponsiveProps) {
         className={classes.logo}
         src={logo}
         alt="Omega Logo"
+        onClick={()=> navigate("../dashboard")}
       />
         <Group spacing={5} className={classes.links}>
           {items}

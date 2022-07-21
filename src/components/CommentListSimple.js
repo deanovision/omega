@@ -1,5 +1,5 @@
 import CommentSimple from './CommentSimple.tsx'
-import { loremIpsum, relativeTime } from '../pages/dashboard/dummyData'
+import { loremIpsum, relativeTime } from '../utils/dummyData'
 import { createStyles, Card, Divider } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
