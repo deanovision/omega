@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../../components/NavBar.tsx';
+import NavBarZeroMargin from '../../components/NavBarZeroMargin.tsx';
 import {useEffect, useState} from 'react'
 import { fetchUser, fetchComments } from '../../utils/dummyData'
 import { Grid, Container, Card } from '@mantine/core';
@@ -26,9 +26,12 @@ function Dashboard() {
       ]
     return(
         <>
-        <NavBar links={tabInfo} />
-        <Container size="xl" px={0}>
-            <Grid columns={24}>
+        <NavBarZeroMargin links={tabInfo} />
+        <Container mt={20} px={0}>
+        <DashboardTabs 
+                timeline={<CommentListSimple comments={comments} />}
+                trendingNewsInfo={<TrendingNews />} />
+            {/* <Grid columns={24}>
                 <Grid.Col span={6}>
                     <Card withBorder p="xl" radius="sm">   
                         {user.name? 
@@ -50,7 +53,7 @@ function Dashboard() {
                 timeline={<CommentListSimple comments={comments} />}
                 trendingNewsInfo={<TrendingNews />} />
                 </Grid.Col>
-            </Grid>
+            </Grid> */}
         </Container>
         </>
     )
