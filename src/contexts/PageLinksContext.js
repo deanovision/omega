@@ -1,27 +1,31 @@
 import {createContext, useState} from 'react'
 
-const AuthorizedUserContext = createContext()
+const PageLinksContext = createContext()
 
-export const PageLinksContext = ({children}) => {
+export const PageLinksProvider = ({children}) => {
     const headerLinksInfo = [
-        {label: 'Home', link: '/auth/dashboard'},
-        {label: 'Profile', link: '/auth/user'},
-        {label: 'Find People', link: '/auth/search-users'}
+      {label: 'Home', link: '/auth/dashboard'},
+      {label: 'Profile', link: '/auth/user'},
+      {label: 'Find People', link: '/auth/search-users'}
       ]
-    // const userProfileLinksInfo = [
-    //     {label: 'My Posts', link: '/auth/dashboard'},
-    //     {label: 'Highlights', link: '/auth/user'},
-    //     {label: 'Omega', link: '/auth/login'}
-    // ]    
+    let footerLinkInfo = [
+      { label: "Contact", link: "/" },
+      { label: "Privacy", link: "/" },
+      { label: "Terms of Service", link: "/" }
+    ]
+      // let footerLinkInfo = [{
+      //   title: "string",
+      //   links: [{ label: "string", link: "string" }]
+      // }]
+
   const [headerLinks] = useState(headerLinksInfo)
-//   const [userProfileLinks] = useState(userProfileLinksInfo)
-//   const [dashboardLinks] = useState(linkInfo)
-  const [footerLinks] = useState(linkInfo)
+  const [footerLinks] = useState(footerLinkInfo)
+
 
     return (
         <PageLinksContext.Provider 
         value={{
-          headerLinks, 
+          headerLinks,
           footerLinks
           }}>
             {children}
@@ -29,4 +33,4 @@ export const PageLinksContext = ({children}) => {
     )
 }
 
-export default AuthorizedUserContext
+export default PageLinksContext

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthorizedUserProvider } from './contexts/AuthorizedUserContext';
+import { PageLinksProvider } from './contexts/PageLinksContext';
 import './index.css';
 import App from './App';
 
@@ -10,7 +11,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthorizedUserProvider>
-        <App />
+        <PageLinksProvider>
+          <App />
+        </PageLinksProvider>
       </AuthorizedUserProvider>
     </BrowserRouter>
   </React.StrictMode>

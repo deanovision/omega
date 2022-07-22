@@ -22,15 +22,10 @@ import {
   Button,
   Alert
 } from '@mantine/core';
-import NavBar from '../../components/NavBar.tsx';
 
 const Login = ()=> {
   let navigate = useNavigate()
-  const tabInfo = [
-    {label: 'Public', link: '/public'},
-    {label: 'Private', link: '/auth/private'},
-    {label: 'Login', link: '/auth/login'}
-  ]
+
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -86,7 +81,6 @@ const Login = ()=> {
   }
   return (
     <>
-    <NavBar links={tabInfo} />
     <Container size={420} my={40}>
       <Title
         align="center"

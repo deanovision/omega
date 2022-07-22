@@ -115,7 +115,6 @@ export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
   const handleAuth = (e) => {
     isAuthorized ? logout(e, setIsAuthorized) : navigate("../login", {replace: true})
   }
-
   return (
     
     <Header height={HEADER_HEIGHT} mb={0} className={classes.root}>
@@ -124,7 +123,7 @@ export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
         className={classes.logo}
         src={logo}
         alt="Omega Logo"
-        onClick={()=> navigate("../dashboard")}
+        onClick={()=> navigate("../auth/dashboard")}
       />
       
         <Group spacing={5} className={classes.links}>

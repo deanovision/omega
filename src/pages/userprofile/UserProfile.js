@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react'
 import CommentListSimple from '../../components/CommentListSimple'
 import {fetchUser, fetchComments} from '../../utils/dummyData'
-import NavBarZeroMargin from '../../components/NavBarZeroMargin.tsx'
 import UserProfileMenu from '../../components/UserProfileMenu.tsx'
 import UserProfileTabs from '../../components/UserProfileTabs.tsx'
 import { Notebook, Users } from 'tabler-icons-react'
@@ -34,12 +33,7 @@ function UserProfile() {
         fetchComments(setComments)
         .catch(err => console.log(err))
     }, [])
-    
-    const tabInfo = [
-        {label: 'Home', link: '/auth/dashboard'},
-        {label: 'Profile', link: '/auth/user'},
-        {label: 'Find People', link: '/auth/search-users'}
-      ]
+
       const userLinks = [
         {label: 'My Posts', link: '/auth/dashboard'},
         {label: 'Highlights', link: '/auth/user'},
@@ -48,7 +42,6 @@ function UserProfile() {
 
     return( 
       <>
-        <NavBarZeroMargin links={tabInfo} />
         <Container mt={20} className={classes.container} size="xl">
           <Container>
             <Card className={classes.profileHeader} withBorder p="xl" radius="sm">

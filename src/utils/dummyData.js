@@ -313,3 +313,223 @@ export const newsData = {
         }
     ]
 }
+export const newsData2 = {
+    "status": "success",
+    "totalResults": 3719,
+    "results": [
+        {
+            "title": "The White House is getting out ahead of expected dismal economic growth numbers next week and pointing out that the US isn't really in a recession",
+            "link": "https://www.businessinsider.com/white-house-biden-recession-gdp-economic-report-2022-7",
+            "keywords": null,
+            "creator": null,
+            "video_url": null,
+            "description": "The economy is in good health for now with a strong labor market and low unemployment. But recession fears abound among Americans.",
+            "content": null,
+            "pubDate": "2022-07-21 19:53:37",
+            "image_url": "https://i.insider.com/62c36a5fada84d0019b7f4be?format=jpeg",
+            "source_id": "businessinsider_us",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "‘Like a bear trap’: Long Island teen recounts vicious shark attack",
+            "link": "https://nypost.com/2022/07/21/long-island-teen-max-haynes-describes-surviving-shark-attack/",
+            "keywords": null,
+            "creator": [
+                "Natalie O'Neill"
+            ],
+            "video_url": null,
+            "description": "Max Haynes was catching waves with his friend, James, roughly 45 feet from the shoreline at Kismet Beach on Fire Island when the shark attacked.",
+            "content": "Max Haynes was catching waves with his friend, James, roughly 45 feet from the shoreline at Kismet Beach on Fire Island when the shark attacked.",
+            "pubDate": "2022-07-21 19:50:12",
+            "image_url": "https://nypost.com/wp-content/uploads/sites/2/2022/07/max-haynes-shark-fire-island-comp.jpg?quality=90&strip=all",
+            "source_id": "nypost",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "Sean McVay, wife Veronika Khomyn hit ESPYs after lavish summer wedding",
+            "link": "https://nypost.com/2022/07/21/sean-mcvay-hits-2022-espys-with-new-wife-veronika-khomyn/",
+            "keywords": null,
+            "creator": [
+                "Jenna Lemoncelli"
+            ],
+            "video_url": null,
+            "description": "Newlyweds Sean McVay and Veronika Khomyn stepped out in style for the 2022 ESPY Awards on Wednesday.",
+            "content": "Newlyweds Sean McVay and Veronika Khomyn stepped out in style for the 2022 ESPY Awards on Wednesday.",
+            "pubDate": "2022-07-21 19:49:34",
+            "image_url": "https://nypost.com/wp-content/uploads/sites/2/2022/07/newspress-collage-23147065-1658432423148.jpg?quality=90&strip=all&1658418135",
+            "source_id": "nypost",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "Here’s how many people use Sacramento County cooling centers, how much they cost",
+            "link": "https://www.kcra.com/article/heres-how-many-people-use-sacramento-county-cooling-centers-how-much-they-cost/40680763",
+            "keywords": null,
+            "creator": null,
+            "video_url": null,
+            "description": "We’ve been telling viewers about the open locations in Sacramento County and wanted to find out if they’re being used, by whom and at what cost.",
+            "content": null,
+            "pubDate": "2022-07-21 19:48:00",
+            "image_url": "https://kubrick.htvapps.com/vidthumb/e97ea1c7-b079-4796-b5d0-ccf1efc886e2/e97ea1c7-b079-4796-b5d0-ccf1efc886e2_image.jpg",
+            "source_id": "kcra",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "European tourist unimpressed with sandwich served on Jet2 flight",
+            "link": "https://nypost.com/2022/07/21/european-tourist-unimpressed-with-sandwich-served-on-jet2-flight/",
+            "keywords": null,
+            "creator": [
+                "News.com.au"
+            ],
+            "video_url": null,
+            "description": "Alex Holowko, known for his mountain bike content, took to TikTok to share his “shocking” plane food experience.",
+            "content": "Alex Holowko, known for his mountain bike content, took to TikTok to share his “shocking” plane food experience.",
+            "pubDate": "2022-07-21 19:46:15",
+            "image_url": "https://nypost.com/wp-content/uploads/sites/2/2022/07/tourist-plane-food-99.jpg?quality=90&strip=all",
+            "source_id": "nypost",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "British spy chief says Russia is about to 'run out of steam' in Ukraine, opening the door for Ukrainian forces to 'strike back'",
+            "link": "https://www.businessinsider.com/british-spy-chief-russia-run-out-of-steam-ukraine-2022-7",
+            "keywords": null,
+            "creator": null,
+            "video_url": null,
+            "description": "The British spy chief said that it's important for Ukrainian morale that they \"demonstrate their ability to strike back.\"",
+            "content": null,
+            "pubDate": "2022-07-21 19:45:09",
+            "image_url": "https://i.insider.com/62d99f56d0011000190fdcc4?format=jpeg",
+            "source_id": "businessinsider_us",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "Looking for a COVID-19 test in Yolo County? Try checking a nearby vending machine",
+            "link": "https://www.kcra.com/article/covid-test-yolo-county-vending-machine/40678668",
+            "keywords": null,
+            "creator": null,
+            "video_url": null,
+            "description": "The vending machines are located in West Sacramento, Woodland, Esparto, Winters and Davis.",
+            "content": null,
+            "pubDate": "2022-07-21 19:44:00",
+            "image_url": "https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/poster-image-2022-07-21t124354-246-1658432655.jpg",
+            "source_id": "kcra",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "Android is ready for the Pixel Buds Pro’s AirPods-like audio switching trick",
+            "link": "https://www.theverge.com/2022/7/21/23273231/android-pixel-buds-pro-audio-automatic-switching-headphones",
+            "keywords": null,
+            "creator": [
+                "Chris Welch"
+            ],
+            "video_url": null,
+            "description": null,
+            "content": "Image: Google Google’s latest and most advanced wireless earbuds yet, the Pixel Buds Pro, won’t be on store shelves for another week. But the company has announced that its Android software is already prepared for one of the earbuds’ most convenient new features: the Pixel Buds Pro will be able to switch between devices automatically — no settings menus necessary. Much like the AirPods can hop between other Apple products (iPhone, iPad, Mac) depending on which one you’re actively using, Google’s flagship earbuds will be able to do the same across Android hardware. “Our audio switching technology builds on top of Fast Pair to use contextual information on what you’re listening to in order to switch the audio based on your actions,” Google’s Angela... Continue reading…",
+            "pubDate": "2022-07-21 19:43:10",
+            "image_url": null,
+            "source_id": "theverge",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "A bride wore a $24 wedding dress that she bought at Goodwill years before she was even engaged",
+            "link": "https://www.insider.com/bride-thrifted-goodwill-wedding-dress-tiktok-2022-7",
+            "keywords": [
+                "Style",
+                "Lifestyle",
+                "Style",
+                "Fashion",
+                "Goodwill",
+                "Thrift stores",
+                "Wedding Dress",
+                "Wedding Dresses",
+                "TikTok",
+                "Viral"
+            ],
+            "creator": [
+                "cfernandez@insider.com (Celia Fernandez)"
+            ],
+            "video_url": null,
+            "description": "Maranda Vandergriff went viral on TikTok for sharing how she transformed the thrifted gown into her dream wedding dress.",
+            "content": "The bride found her wedding dress years before she actually got married.Maranda Vandergriff/Within the Pines Photography Maranda Vandergriff got married on November 1, 2020, in a wedding dress she bought at Goodwill. The dress cost $24, and she bought it years before she was even engaged.  In June, she shared a TikTok video that showed how it was altered. It garnered over 200,000 views. Maranda Vandergriff has been thrifting her whole life, but she didn't expect that a random gown she purchased from Goodwill would become her dream wedding dress years later.In June, the 27-year-old creative director shared a TikTok video of the thrifted dress she wore for her November 2020 wedding. The video has over 202,000 views as of Thursday.  @marandavandy Reply to @shaylynnwatkins8 I found my dream dress at a pretty unusual store #weddingdress #vintageweddingdress #goodwillfinds #vintagewedding #weddingtok #thriftedwedding ♬ Enchanted Forest Walk (3 Min) - CrazeMusic Vandergriff told Insider that she and her family have been participating as volunteer models in the Goodwill Vintage Fashion Show in Knoxville, Tennessee, for over a decade now. In 2014, she tried on a '70s-style wedding dress designed with a scalloped trim and a lace applique neckline, but she didn't end up wearing it on the runway. After the fashion show, the dress was put on sale for $30. As a model, she was entitled to a 20% off discount, so she purchased the wedding dress for $24. \"Since I've been thrifting my whole life, I know that when you find something special in the thrift store, you either get it or you may never see it again,\" Vandergriff said. \"I bought it even though I was not planning to get married at any point in time. It was just an option that I had for the future.\"Vandergriff bought the wedding dress at Goodwill.Maranda VandergriffIn 2019, Vandergriff got engaged to the same boyfriend she had been dating when she bought the wedding dress at Goodwill. She told Insider that after having it in her closet for five years, she realized it was her dream dress. \"I've been collecting vintage clothing for years now, so it just felt perfect to wear this vintage dress that I thrifted in my wedding,\" she added. When it came time to alter the dress, Vandergriff turned to her mom and grandmother for help. She used lace fabric her mom had purchased during a 2020 UK trip to create the new sleeves on the dress. Vandergriff also repurposed small beads from her mother's handmade wedding dress to stitch up a couple of pieces of the open scalloped edge on the sleeves. \"It was such a special experience to alter my wedding dress with the help of my mom and grandmother,\" she said. \"My mom made her wedding dress, and my grandmother taught me how to sew, so it felt like we were bringing things full circle and honoring my parents' wedding simultaneously.\"Vandergriff included beads from her mom's wedding dress.Within the Pines Photography\"Including multiple generations of my family in the process was special,\" Vandergriff added. \"It made wearing that dress on my wedding day that much more of a beautiful experience. It was an honor to have my whole family involved from start to finish.\"Vandergriff had help from her mom and grandmother to make her dream wedding look come to life.Within the Pines PhotographyIt took the bride, her mom, and grandmother about six weeks to alter the dress. But Vandergriff said her grandmother died shortly before the wedding and didn't get to see the final version of the dress. To honor her, she had one of her grandmother's scarves tied around her wedding bouquet. Vandergriff also celebrated her family by borrowing her wedding shoes from her sister. When Vandergriff saw the final version of her wedding dress, she said she couldn't have been happier. She told Insider that in 2019, she had sketched what she wanted her wedding look to be, and everything ended up matching the sketch perfectly. \"The wedding dress was almost identical to my original vision. I was thrilled to be able to bring that vision to life,\" she said. Vandergriff's wedding look ended up being an exact version of a sketch she did in 2019.Maranda Vandergriff Read the original article on Insider",
+            "pubDate": "2022-07-21 19:42:42",
+            "image_url": "https://i.insider.com/62c7210699259b00181e570f?format=jpeg",
+            "source_id": "insider",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        },
+        {
+            "title": "Minneapolis council again delays vote on reappointment of city's emergency director",
+            "link": "https://www.startribune.com/minneapolis-council-again-delays-vote-on-reappointment-of-citys-emergency-director/600192027/",
+            "keywords": null,
+            "creator": [
+                "Katelyn Vue"
+            ],
+            "video_url": null,
+            "description": null,
+            "content": null,
+            "pubDate": "2022-07-21 19:42:31",
+            "image_url": null,
+            "source_id": "startribune",
+            "country": [
+                "united states of america"
+            ],
+            "category": [
+                "top"
+            ],
+            "language": "english"
+        }
+    ],
+    "nextPage": 1
+}

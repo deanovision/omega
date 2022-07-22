@@ -1,16 +1,14 @@
 import {useState, useEffect} from 'react'
-import {newsData, relativeTime} from '../utils/dummyData'
-import { getFullArticle } from '../utils/articleScraper';
+import {newsData, } from '../utils/dummyData'
 import { uuidv4 as uuid } from '@firebase/util';
-import {createStyles, Group, Text, Image, Badge, Card, Avatar, Divider} from '@mantine/core'
+import {createStyles, Card, Divider} from '@mantine/core'
+// import placeHolder from '../assets/newsimageplaceholder.png'
+import NewsCard from './NewsCard';
 
 const useStyles = createStyles((theme) => ({
     body: {
       paddingTop: theme.spacing.sm,
       textAlign: "left"
-    },
-    container: {
-        paddingBottom: 150
     },
     postedAt: {
       textAlign: "left"
@@ -27,6 +25,9 @@ const useStyles = createStyles((theme) => ({
         margin: "auto",
     
       },
+    //   badge: {
+    //     marginLeft: "auto"
+    //   },
   }));
 
 function NewsList(){
@@ -34,34 +35,20 @@ function NewsList(){
     const { classes } = useStyles();
     useEffect(()=> {
         setNewsList(newsData.articles)
-        // getFullArticle()
     }, [setNewsList])
 
     const trendingNews = newsList.map((article) => {
-        const {source, title, description, content, url, urlToImage, publishedAt} = article
+        const {title, content, url, urlToImage,} = article
+        // const {title, link, description, image_url,} = article
         // const publishedAt = relativeTime(pubDate)
+        // const getImage = ()=> {
+        //   return image_url ? image_url : placeHolder
+        // }
         return(
             <div  key={uuid()}>
             <Card shadow="xl" withBorder p="xl" radius="sm" className={classes.card}>
-            <Card.Section>
-                <Image src={urlToImage} height={450} alt={title} />
-            </Card.Section>
-            <Group mt={10} noWrap>
-                <div>
-                    <Text mt={20} mb={5} weight={500} size="xl">{title}</Text>
-                    <Badge mb={20} size="md" radius="xl">Trending</Badge>
-                    {/* <Text className={classes.postedAt} size="xs" color="dimmed">
-                        {relativeTime(publishedAt)}
-                    </Text> */}
-            <Text className={classes.body} size="md">
-                {description}
-            </Text>
-            <Text className={classes.body} size="md">
-                {content?.slice(0, 200)}
-            </Text>
-                </div>
-            </Group>
-            {/* <Image mt={50} src={urlToImage} alt={title} /> */}
+                {/* <NewsCard url={link} imgUrl={getImage()} content={description} title={title} /> */}
+                <NewsCard url={url} imgUrl={urlToImage} content={content} title={title} />
             </Card>
             <Divider my="sm" />
             </div>
@@ -75,3 +62,31 @@ function NewsList(){
     )
 }
 export default NewsList
+
+
+// return(
+//     <div  key={uuid()}>
+//     <Card shadow="xl" withBorder p="xl" radius="sm" className={classes.card}>
+//     <Card.Section>
+//         <Image src={urlToImage} height={450} alt={title} />
+//     </Card.Section>
+//     <Group mt={10} noWrap>
+//         <div>
+//             <Text mt={20} mb={5} weight={500} size="xl">{title}</Text>
+//             <Badge mb={20} size="md" radius="xl">Trending</Badge>
+//             {/* <Text className={classes.postedAt} size="xs" color="dimmed">
+//                 {relativeTime(publishedAt)}
+//             </Text> */}
+//     <Text className={classes.body} size="md">
+//         {description}
+//     </Text>
+//     <Text className={classes.body} size="md">
+//         {content?.slice(0, 200)}
+//     </Text>
+//         </div>
+//     </Group>
+//     {/* <Image mt={50} src={urlToImage} alt={title} /> */}
+//     </Card>
+//     <Divider my="sm" />
+//     </div>
+// )
