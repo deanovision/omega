@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tabs, Card, Container } from '@mantine/core';
+import { Tabs, Card } from '@mantine/core';
 import { TrendingUp, Notebook, Coin } from 'tabler-icons-react';
 
 function DashboardTabs({timeline, trendingNewsInfo}) {

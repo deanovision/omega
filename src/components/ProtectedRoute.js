@@ -16,7 +16,7 @@ const ProtectedRoute = () => {
       else {
         console.log("user is signed out")
         setIsAuthorized(false)
-        navigate("../auth/login", {replace: true})
+        navigate("../login", {replace: true})
       }
     })
   }, [navigate, setIsAuthorized])
