@@ -13,6 +13,7 @@ import FindUsers from './pages/findusers/FindUsers'
 import UserProfile from './pages/userprofile/UserProfile'
 import ProtectedRoute from './components/ProtectedRoute';
 import NavBarZeroMargin from './components/NavBarZeroMargin.tsx';
+import SetupProfile from './pages/setupprofile/SetupProfile';
 
 function App() {
   const {colorScheme, setColorScheme} = useContext(AuthorizedUserContext)
@@ -30,15 +31,16 @@ function App() {
         <div style={getColorScheme(colorScheme)}>
           <NavBarZeroMargin links={headerLinks} />
           <Routes>
-            <Route element={<Home />} path={"/"} />
+            <Route element={<Home />} path="/" />
             <Route element={<ProtectedRoute />} path="/auth">
-              <Route element={<UserProfile />} path={"user"} />
-              <Route element={<Dashboard />} path={"dashboard"} />
-              <Route element={<FindUsers />} path={"search-users"} />
+              <Route element={<UserProfile />} path="user" />
+              <Route element={<Dashboard />} path="dashboard" />
+              <Route element={<FindUsers />} path="search-users" />
             </Route>
-            <Route element={<Login />} path={"/login"} />
-            <Route element={<SignUp />} path={"/signup"} />
+            <Route element={<Login />} path="/login" />
+            <Route element={<SignUp />} path="/signup" />
             <Route element={<ResetPassword />} path="/reset-password" />
+            <Route element={<SetupProfile />} path="/setup-profile" />
           </Routes>
           <SimpleFooter links={footerLinks} />
         </div>
