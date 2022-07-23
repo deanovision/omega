@@ -4,7 +4,7 @@ import { logout } from '../firebase/authorizeUsers';
 import { useBooleanToggle } from '@mantine/hooks';
 import AuthorizedUserContext from '../contexts/AuthorizedUserContext';
 import {useNavigate} from 'react-router-dom'
-import logo from '../assets/omegalogo1.png'
+import logo from '../assets/omegalogo4.png'
 import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 75;
 
