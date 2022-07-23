@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, Container, Group, Anchor, Image } from '@mantine/core';
-import logo from '../assets/omegalogo1.png'
+import logo from '../assets/omegalogo4.png'
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -10,7 +10,10 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
   },
-
+  logo: {
+    maxWidth: "120px",
+    height: "auto"
+  },
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -55,6 +58,7 @@ function SimpleFooter({ links }: FooterSimpleProps) {
         src={logo}
         alt="Omega Logo"
         height={75}
+        className={classes.logo}
       />
         <Group className={classes.links}>{items}</Group>
       </Container>

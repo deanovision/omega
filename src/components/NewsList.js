@@ -62,31 +62,3 @@ function NewsList(){
     )
 }
 export default NewsList
-
-
-// return(
-//     <div  key={uuid()}>
-//     <Card shadow="xl" withBorder p="xl" radius="sm" className={classes.card}>
-//     <Card.Section>
-//         <Image src={urlToImage} height={450} alt={title} />
-//     </Card.Section>
-//     <Group mt={10} noWrap>
-//         <div>
-//             <Text mt={20} mb={5} weight={500} size="xl">{title}</Text>
-//             <Badge mb={20} size="md" radius="xl">Trending</Badge>
-//             {/* <Text className={classes.postedAt} size="xs" color="dimmed">
-//                 {relativeTime(publishedAt)}
-//             </Text> */}
-//     <Text className={classes.body} size="md">
-//         {description}
-//     </Text>
-//     <Text className={classes.body} size="md">
-//         {content?.slice(0, 200)}
-//     </Text>
-//         </div>
-//     </Group>
-//     {/* <Image mt={50} src={urlToImage} alt={title} /> */}
-//     </Card>
-//     <Divider my="sm" />
-//     </div>
-// )
