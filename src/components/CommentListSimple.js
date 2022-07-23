@@ -20,7 +20,7 @@ function CommentListSimple({comments}) {
       return (
            <div key={index} className={classes.comment}>
                <CommentSimple
-                 postedAt={relativeTime(1657307860533)}
+                 postedAt={relativeTime(1658526793738)}
                  body={loremIpsum}
                  author={{
                    name: `${comment?.name.first} ${comment?.name.last}`,
