@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Avatar, Text, Group, Anchor } from '@mantine/core';
+import { createStyles, Avatar, Image, Text, Group, Anchor, MediaQuery } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   icon: {
@@ -9,16 +9,40 @@ const useStyles = createStyles((theme) => ({
   name: {
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
   },
+  mobile: {
+    display: 'none',
+  },
+  desktop :{
+    display: 'none',
+  },
 }));
 
 function NewsCard({ imgUrl, content, title, url }) {
   const { classes } = useStyles();
   return (
     <div>
+      <MediaQuery largerThan="md" styles={classes.desktop}>
       <Group noWrap>
-        <Avatar src={imgUrl} size={200} />
         <div>
-
+        <Image src={imgUrl} />
+          <Text mt={10} size="lg" weight={400} className={classes.name}>
+            {title}
+          </Text>
+          <Text mt={10} size="sm" weight={200} color="dimmed">
+            {content?.slice(0, 200)}
+          </Text>
+          <Anchor href={url} target="_blank">
+          <Text mt={10} size="xs" sx={{ textTransform: 'uppercase' }} weight={200}>
+            Read More...
+          </Text>
+          </Anchor>
+        </div>
+      </Group>
+      </MediaQuery>
+      <MediaQuery smallerThan="md" styles={classes.mobile}>
+      <Group noWrap>
+        <Avatar src={imgUrl} size={250} />
+        <div>
           <Text size="lg" weight={400} className={classes.name}>
             {title}
           </Text>
@@ -30,22 +54,9 @@ function NewsCard({ imgUrl, content, title, url }) {
             Read More...
           </Text>
           </Anchor>
-
-          {/* <Group noWrap spacing={10} mt={3}>
-            <At size={16} className={classes.icon} />
-            <Text size="xs" color="dimmed">
-              {email}
-            </Text>
-          </Group> */}
-
-          {/* <Group noWrap spacing={10} mt={5}>
-            <PhoneCall size={16} className={classes.icon} />
-            <Text size="xs" color="dimmed">
-              {phone}
-            </Text>
-          </Group> */}
         </div>
       </Group>
+      </MediaQuery>      
     </div>
   );
 }
