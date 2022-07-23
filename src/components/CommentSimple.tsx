@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { createStyles, Text, Avatar, Group, Card, ActionIcon } from '@mantine/core';
 import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
-import { useClickOutside } from '@mantine/hooks';
+// import { useClickOutside } from '@mantine/hooks';
 import AddComment from './AddComment.tsx';
 
 const useStyles = createStyles((theme) => ({
@@ -47,7 +47,7 @@ interface CommentSimpleProps {
 function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
   const [thumbsUp, setThumbsUp] = useState(false)
   const [visible, setVisible] = useState(false)
-  const clickOutsideRef = useClickOutside(() => setVisible(false));
+  // const clickOutsideRef = useClickOutside(() => setVisible(false));
 
   function handleEngagement() {
    return thumbsUp ? classes.liked : "icons"
@@ -69,7 +69,7 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
       </Text>
       <Group className={classes.engagement} spacing="xl">
         <ActionIcon size="xl" radius="lg">
-          <div ref={clickOutsideRef}>
+          <div>
             <Message2 
               strokeWidth={1} 
               size={36} 
