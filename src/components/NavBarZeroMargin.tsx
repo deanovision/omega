@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { createStyles, Header, Container, Group, Burger, Paper, Transition, Image, Button } from '@mantine/core';
+import { createStyles, Header, Container, Group, Burger, Paper, Transition, Image, Button, MediaQuery } from '@mantine/core';
 import { logout } from '../firebase/authorizeUsers';
 import { useBooleanToggle } from '@mantine/hooks';
 import AuthorizedUserContext from '../contexts/AuthorizedUserContext';
 import {useNavigate} from 'react-router-dom'
 import logo from '../assets/omegalogo4.png'
-import ToggleColorScheme from './ToggleColorScheme.tsx'
+// import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 75;
 
 const useStyles = createStyles((theme) => ({
@@ -39,7 +39,6 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '100%',
-    // maxWidth: '100%'
   },
 
   links: {
@@ -129,10 +128,12 @@ export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        <ToggleColorScheme />
-        <Button radius="xl" onClick={(e)=> handleAuth(e)}>
-          {isAuthorized ? "Logout" : "Login"}
-        </Button>
+        {/* <ToggleColorScheme /> */}
+        <MediaQuery smallerThan="sm" styles={{display: 'none'}}>
+          <Button radius="xl" onClick={(e)=> handleAuth(e)}>
+            {isAuthorized ? "Logout" : "Login"}
+          </Button>
+        </MediaQuery>
         <Burger
           opened={opened}
           onClick={() => toggleOpened()}
@@ -144,6 +145,17 @@ export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
+            <a
+              className={cx(classes.link)}
+              href="/"
+              onClick={(event) => {
+                event.preventDefault();
+                handleAuth(event)
+                toggleOpened(false);
+              }}
+            >
+              {isAuthorized ? "Logout" : "Login"}
+            </a>
             </Paper>
           )}
         </Transition>
