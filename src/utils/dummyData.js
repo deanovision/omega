@@ -46,6 +46,14 @@ export const fetchComments = async (setComments) =>{
     // console.log(newUser)
     setComments(newUser)
 }
+export const fetchPosts = async (setPosts) =>{
+    let response = await axios.get("https://randomuser.me/api/?results=25")
+    let newUser = await response.data.results
+    // let getImage = await axios.get("https://random-data-api.com/api/lorem_flickr/random_lorem_flickr")
+    // let newImage = getImage.data.image
+    // console.log(newUser)
+    setPosts(newUser)
+}
 
 export const newsData = {
     "status": "ok",
