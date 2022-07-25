@@ -6,6 +6,9 @@ const useStyles = createStyles((theme) => ({
     marginLeft: "auto",
     borderRadius: "100px"
   },
+  container: {
+    marginTop: 15,
+  }
 }));
 
 function AddComment({visible, clickOutsideRef}) {
@@ -14,11 +17,10 @@ function AddComment({visible, clickOutsideRef}) {
   return (
     <Transition mounted={visible} transition="fade" duration={500} timingFunction="ease">
     {(styles) => 
-    <div style={styles}>
+    <div className={classes.container} style={styles}>
       <div ref={clickOutsideRef}>
           <Textarea
-          placeholder="Your comment"
-          label="Your comment"
+          placeholder="Add a comment"
           required
           />
           <Button 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tabs, Card, MediaQuery } from '@mantine/core';
-import { TrendingUp, Notebook, Coin } from 'tabler-icons-react';
+import { TrendingUp, Notebook, World } from 'tabler-icons-react';
 
 function DashboardTabs({timeline, trendingNewsInfo}) {
   const [activeTab, setActiveTab] = useState(0);
@@ -20,8 +20,8 @@ function DashboardTabs({timeline, trendingNewsInfo}) {
                     {trendingNewsInfo}
                   </Tabs.Tab>
                 <Tabs.Tab 
-                  label="OMEGA" 
-                  icon={<Coin size={14} />} />
+                  label="EXPLORE" 
+                  icon={<World size={14} />} />
             </Tabs>
         </Card>
       </MediaQuery>
@@ -40,8 +40,8 @@ function DashboardTabs({timeline, trendingNewsInfo}) {
                     {trendingNewsInfo}
                   </Tabs.Tab>
                 <Tabs.Tab 
-                  label="OMEGA" 
-                  icon={<Coin size={14} />} />
+                  label="EXPLORE" 
+                  icon={<World size={14} />} />
             </Tabs>
         </Card>
       </MediaQuery>

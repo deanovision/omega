@@ -1,20 +1,20 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
-import {  fetchComments } from '../../utils/dummyData'
+import {  fetchPosts } from '../../utils/dummyData'
 import {Container} from '@mantine/core';
 import DashboardTabs from '../../components/DashboardTabs.js';
-import CommentListSimple from '../../components/CommentListSimple';
 import TrendingNews from './TrendingNews';
+import PostListSimple from '../../components/PostListSimple';
 
 function Dashboard() {
     // const [user, setUser] = useState({})
-    const [comments, setComments] = useState([])
+    const [posts, setPosts] = useState([])
     // useEffect(()=>{
     //     fetchUser(setUser)
     //     .catch(err => console.log(err))
     // },[])
     useEffect(()=> {
-        fetchComments(setComments)
+        fetchPosts(setPosts)
         .catch(err => console.log(err))
     }, [])
 
@@ -22,7 +22,7 @@ function Dashboard() {
         <>
         <Container mt={20} px={0}>
         <DashboardTabs 
-                timeline={<CommentListSimple comments={comments} />}
+                timeline={<PostListSimple postComments={[]} posts={posts} />}
                 trendingNewsInfo={<TrendingNews />} />
         </Container>
         </>
