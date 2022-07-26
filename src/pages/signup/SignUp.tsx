@@ -34,7 +34,7 @@ const SignUp = ()=> {
         if (user) {
           const uid = user.uid;
           console.log("user ID",uid)
-          navigate("../setup-profile", {replace: true})
+          navigate("../auth/setup-profile", {replace: true})
         } else {
           console.log("user is signed out")
         }

@@ -36,11 +36,11 @@ function App() {
               <Route element={<UserProfile />} path="user" />
               <Route element={<Dashboard />} path="dashboard" />
               <Route element={<FindUsers />} path="search-users" />
+              <Route element={<SetupProfile />} path="setup-profile" />
             </Route>
             <Route element={<Login />} path="/login" />
             <Route element={<SignUp />} path="/signup" />
             <Route element={<ResetPassword />} path="/reset-password" />
-            <Route element={<SetupProfile />} path="/setup-profile" />
           </Routes>
           <SimpleFooter links={footerLinks} />
         </div>

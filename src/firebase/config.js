@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, setDoc } from "firebase/firestore";
+import { getFirestore} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider} from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
@@ -19,17 +19,17 @@ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider()
 export const storage = getStorage(app)
 
-export const addUser = (user)=> {
-  setDoc(collection(db, "users", user.uid), {
-    email: user.email,
-    photoURL: user.photoURL,
-    name: user.displayName? user.displayName : null
-  })
-    .then(res => {
-        console.log("Document written with", res)
-    })
-    .catch(err => {
-        console.error("Error adding document", err)
-    })
-}
+// export const addUser = (user)=> {
+//   setDoc(collection(db, "users", user.uid), {
+//     email: user.email,
+//     photoURL: user.photoURL,
+//     name: user.displayName? user.displayName : null
+//   })
+//     .then(res => {
+//         console.log("Document written with", res)
+//     })
+//     .catch(err => {
+//         console.error("Error adding document", err)
+//     })
+// }
 

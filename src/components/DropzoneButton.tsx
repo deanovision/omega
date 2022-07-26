@@ -1,12 +1,15 @@
 import React, { useRef } from 'react';
-import { Text, Group, Button, createStyles, MantineTheme, useMantineTheme } from '@mantine/core';
+import { Text, Group, createStyles, MantineTheme, useMantineTheme, Progress } from '@mantine/core';
 import { Dropzone, DropzoneStatus, MIME_TYPES } from '@mantine/dropzone';
 import { CloudUpload } from 'tabler-icons-react';
+import { useContext } from "react";
+import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: 'relative',
     marginBottom: 30,
+    marginTop: 20
   },
 
   dropzone: {
@@ -36,20 +39,21 @@ function getActiveColor(status: DropzoneStatus, theme: MantineTheme) {
     : theme.black;
 }
 
-function DropzoneButton() {
+function DropzoneButton({progress, uploadFile, setUploadUrl, setProgress}) {
   const theme = useMantineTheme();
   const { classes } = useStyles();
   const openRef = useRef<() => void>();
+  const {authUser} = useContext(AuthorizedUserContext)
 
   return (
     <div className={classes.wrapper}>
       <Dropzone
         openRef={openRef}
-        onDrop={(files) => {console.log(files)}}
+        onDrop={(files) => {uploadFile(files[0], setUploadUrl, setProgress, authUser.uid)}}
         className={classes.dropzone}
         radius="md"
-        accept={[MIME_TYPES.pdf]}
-        maxSize={30 * 1024 ** 2}
+        accept={['image/png', 'image/jpeg']}
+        // maxSize={30 * 1024 ** 2}
       >
         {(status) => (
           <div style={{ pointerEvents: 'none' }}>
@@ -67,7 +71,7 @@ function DropzoneButton() {
                 ? 'Drop files here'
                 : status.rejected
                 ? 'Pdf file less than 30mb'
-                : 'Upload resume'}
+                : 'Click to upload profile picture'}
             </Text>
             <Text align="center" size="sm" mt="xs" color="dimmed">
               Drag&apos;n&apos;drop files here to upload. We can accept only <i>.pdf</i> files that
@@ -77,9 +81,10 @@ function DropzoneButton() {
         )}
       </Dropzone>
 
-      <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current()}>
+      {/* <Button className={classes.control} size="md" radius="xl" onClick={() => openRef.current()}>
         Select files
-      </Button>
+      </Button> */}
+      <Progress mt={10} color="green" radius="md" size="xl" value={progress} animate />
     </div>
   );
 }
