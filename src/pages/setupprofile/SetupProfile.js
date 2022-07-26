@@ -4,6 +4,8 @@ import { onAuthStateChanged} from "firebase/auth";
 import { auth } from '../../firebase/config'
 import { addUser } from '../../firebase/userModel'
 import { AlertCircle } from 'tabler-icons-react';
+import DropzoneButton from '../../components/DropzoneButton.tsx'
+import { uploadAvatar } from '../../firebase/storage';
 import {
   TextInput,
   Paper,
@@ -14,37 +16,42 @@ import {
 } from '@mantine/core';
 
 const SetupProfile = ()=> {
-  const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [userName, setUserName] = useState("")
-  const [id, setId] = useState("")
-  const [error, setError] = useState("")
   let navigate = useNavigate()
+  const [error, setError] = useState("")
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [avatarUrl, setAvatarUrl] = useState("")
+  const [profile, setProfile] = useState({
+    email: "",
+    userName: "",
+    name: "",
+    uid: ""
+  })
+  const {email, userName, name, uid} = profile
 
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
         if (user) {
-          setName(user.displayName)
-          setEmail(user.email)
-          setId(user.uid)
+          let {email, displayName, uid} = user
+          setProfile({...profile, email, name: displayName, uid})
         } else {
           console.log("user is signed out")
           navigate("../login", {replace: true})
         }
       });
   }, [navigate])
-  const handleChanges = (e, setInput) => {
-      setInput(e.target.value)
-  }
 
+  const handleChanges = (e) => {
+    setProfile({...profile, [e.target.name]: e.target.value})
+}
 
   const handleSubmit = (e)=> {
     e.preventDefault()
     const userData = {
-        uid: id,
+        uid: uid,
         name: name,
         userName: userName,
-        email: email
+        email: email,
+        avatarUrl: avatarUrl
     }
     const checkUser = []
 
@@ -66,13 +73,14 @@ const SetupProfile = ()=> {
       .then(()=> {
         addUser(userData)
         setError("")
-        navigate("../auth/dashboard")
+        navigate("../dashboard")
     })
       .catch(err => {
         setError(err.message)
         console.log(err.message)
       })
   }
+  // console.log("PROFILE", profile)
   return (
     <>
     <Container size={420} my={40}>
@@ -94,25 +102,26 @@ const SetupProfile = ()=> {
         }
         <TextInput 
           name="email" 
-          value={email} 
-          onChange={e=> handleChanges(e, setEmail)}
+          value={profile.email} 
+          onChange={e=> handleChanges(e)}
           label="Email" 
           placeholder="you@email.com" 
           required />
         <TextInput 
           name="name" 
-          value={name} 
-          onChange={e=> handleChanges(e, setName)}
+          value={profile.name} 
+          onChange={e=> handleChanges(e)}
           label="Name" 
           placeholder="John Smith" 
           required />
         <TextInput 
           name="userName" 
-          value={userName} 
-          onChange={e=> handleChanges(e, setUserName)}
+          value={profile.userName} 
+          onChange={e=> handleChanges(e)}
           label="Username" 
           placeholder="jsmith777" 
           required />
+        <DropzoneButton progress={uploadProgress} uploadFile={uploadAvatar} setUploadUrl={setAvatarUrl} setProgress={setUploadProgress} />
         <Button onClick={e => handleSubmit(e)} fullWidth mt="xl">
           Submit
         </Button>

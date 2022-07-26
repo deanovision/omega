@@ -3,11 +3,7 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
 export const addUser = (user)=> {
-    setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      userName: user.userName,
-      name: user.name
-    })
+    setDoc(doc(db, "users", user.uid), user)
       .then(() => {
           console.log("success, user has been added", user.uid)
       })
