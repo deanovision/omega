@@ -4,7 +4,8 @@ import {  fetchPosts } from '../../utils/dummyData'
 import {Container} from '@mantine/core';
 import DashboardTabs from '../../components/DashboardTabs.js';
 import TrendingNews from './TrendingNews';
-import PostListSimple from '../../components/PostListSimple';
+import CommentListSimple from '../../components/CommentListSimple';
+// import PostListSimple from '../../components/PostListSimple';
 
 function Dashboard() {
     // const [user, setUser] = useState({})
@@ -22,7 +23,7 @@ function Dashboard() {
         <>
         <Container mt={20} px={0}>
         <DashboardTabs 
-                timeline={<PostListSimple postComments={[]} posts={posts} />}
+                timeline={<CommentListSimple postComments={[]} comments={posts} />}
                 trendingNewsInfo={<TrendingNews />} />
         </Container>
         </>

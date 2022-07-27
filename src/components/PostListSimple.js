@@ -1,7 +1,8 @@
 // import CommentSimple from './CommentSimple.tsx'
 import PostSimple from './PostSimple.tsx';
-import { loremIpsum, relativeTime } from '../utils/dummyData'
+import { relativeTime } from '../utils/dummyData'
 import { createStyles, Card, Divider, MediaQuery } from '@mantine/core';
+import { Timestamp } from 'firebase/firestore';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -22,21 +23,23 @@ const useStyles = createStyles((theme) => ({
       margin: "auto",
     },
     comment: {
-      marginTop: "30px"
+      marginTop: "15px",
+      marginBottom: "15px"
     }
   }));
 
 function PostListSimple({posts, postComments}) {
     const { classes} = useStyles();
     const postList = posts.map((post, index) => {
+      const postCreatedAt = new Timestamp(post.createdAt.seconds, post.createdAt.nanoseconds).toDate()
       return (
         <div key={index} className={classes.comment}>
           <PostSimple
-            postedAt={relativeTime(1658553610894)}
-            body={loremIpsum}
+            postedAt={relativeTime(postCreatedAt)}
+            body={post.body}
             author={{
-              name: `${post?.name.first} ${post?.name.last}`,
-              image: post?.picture.medium
+              name: post.createdBy,
+              image: post.postedByAvatarUrl
               }
             }
             // postComments={postComments}
