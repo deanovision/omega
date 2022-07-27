@@ -1,8 +1,10 @@
 import {useState, useEffect, useContext} from 'react'
 import AuthorizedUserContext from '../../contexts/AuthorizedUserContext'
-import CommentListSimple from '../../components/CommentListSimple'
-import {fetchComments} from '../../utils/dummyData'
+// import CommentListSimple from '../../components/CommentListSimple'
+import PostListSimple from '../../components/PostListSimple'
+// import {fetchComments} from '../../utils/dummyData'
 import { fetchUser } from '../../firebase/userModel'
+import { fetchPostsByUserId } from '../../firebase/postModel'
 import UserProfileTabs from '../../components/UserProfileTabs.tsx'
 import { Notebook, Users } from 'tabler-icons-react'
 import {Container, Group, createStyles, Avatar, Card, Text, MediaQuery} from '@mantine/core'
@@ -44,7 +46,8 @@ const useStyles = createStyles((theme) => ({
 
 function UserProfile() {
     const [user, setUser] = useState({})
-    const [comments, setComments] = useState([])
+    // const [comments, setComments] = useState([])
+    const [posts, setPosts] = useState([])
     const { classes } = useStyles();
     const {authUser} = useContext(AuthorizedUserContext)
     let {uid} = useParams()
@@ -52,16 +55,18 @@ function UserProfile() {
 
     useEffect(()=>{
       // console.log("UID USE PARAMS", uid)
-        fetchUser(uid)
-        .then(res => {
-          setUser({...res})
-        })
-        .catch(err => console.log(err))
+      fetchUser(uid)
+      .then(res => {
+        setUser({...res})
+      })
+      .catch(err => console.log(err))
     },[uid, authUser.uid, navigate])
     useEffect(()=> {
-        fetchComments(setComments)
-        .catch(err => console.log(err))
-    }, [])
+      fetchPostsByUserId(uid, setPosts)
+      // fetchComments(setComments)
+      .catch(err => console.log(err))
+    }, [uid])
+    console.log("POSTS ====>", posts)
     return( 
       <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
@@ -76,9 +81,6 @@ function UserProfile() {
               <Text  mb={10} size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
                 {user.userName ? `@${user.userName}` : null}
               </Text>
-              <Text align="left" size="sm" color="dimmed">
-              {user?.bio}
-              </Text>
               <Group mb={10} noWrap spacing={10} mt={10}>
                 <Notebook size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">
@@ -89,6 +91,9 @@ function UserProfile() {
                   {user?.followers}
                 </Text>
               </Group>
+              <Text align="left" size="sm" color="dimmed">
+              {user?.bio}
+              </Text>
               {
                 uid === authUser.uid ? 
                 <UpdateProfileModal align={"center"} user={user} /> 
@@ -96,7 +101,7 @@ function UserProfile() {
               }
             </Container>
             </Card>
-            <UserProfileTabs timeline={<CommentListSimple comments={comments} />} />
+            <UserProfileTabs timeline={<PostListSimple posts={posts} />} />
           </Container>
           {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>
@@ -113,9 +118,6 @@ function UserProfile() {
               <Text  mb={10} size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
                {user.userName ? `@${user.userName}` : null}
               </Text>
-              <Text align="left" size="sm" color="dimmed">
-                {user?.bio}
-              </Text>
               <Group mb={10} noWrap spacing={10} mt={10}>
                 <Notebook size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">
@@ -126,6 +128,9 @@ function UserProfile() {
                   {user?.followers}
                 </Text>
               </Group>
+              <Text align="left" size="sm" color="dimmed">
+                {user?.bio}
+              </Text>
               {
                 uid === authUser.uid ? 
                 <UpdateProfileModal align={"left"} user={user} /> 
@@ -133,7 +138,7 @@ function UserProfile() {
               }
             </Container>
             </Card>
-            <UserProfileTabs timeline={<CommentListSimple comments={comments} />} />
+            <UserProfileTabs timeline={<PostListSimple posts={posts} />} />
           </Container>
           {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>

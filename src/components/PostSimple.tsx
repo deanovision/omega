@@ -9,7 +9,7 @@ import AddComment from './AddComment.tsx';
 const useStyles = createStyles((theme) => ({
   body: {
     paddingTop: theme.spacing.sm,
-    textAlign: "left"
+    textAlign: "left",
   },
   card: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
@@ -21,10 +21,11 @@ const useStyles = createStyles((theme) => ({
     textAlign: "left"
   },
   engagement :{
-    paddingTop: 10
+    paddingTop: 10,
+    marginLeft: -10  
   },
   icons: {
-    color: theme.colorScheme === 'dark' ? "#FFF" : theme.colors.gray[7]    
+    color: theme.colorScheme === 'dark' ? "#FFF" : theme.colors.gray[7]  
   },
   liked: {
     color: theme.colors.blue[5]
@@ -34,6 +35,10 @@ const useStyles = createStyles((theme) => ({
   },
   hidden: {
     display: "none"
+  },
+  userHeader: {
+    // display: "flex",
+    // alignContent: "top"
   }
 }));
 
@@ -76,15 +81,13 @@ function PostSimple({ postedAt, body, author, postComments }: CommentSimpleProps
   const { classes } = useStyles();
   return (
     <Card withBorder p="xl" radius="sm" className={classes.card}>
-      <Group>
+      <Group align="initial" className={classes.userHeader}>
         <Avatar size="lg" src={author.image} alt={author.name} radius="xl" />
         <div>
           <Text size="sm">{author.name}</Text>
           <Text className={classes.postedAt} size="xs" color="dimmed">
             {postedAt}
           </Text>
-        </div>
-      </Group>
       <Text className={classes.body} size="sm">
         {body}
       </Text>
@@ -118,6 +121,8 @@ function PostSimple({ postedAt, body, author, postComments }: CommentSimpleProps
             />
         </div>
         </ActionIcon>        
+      </Group>
+        </div>
       </Group>
       {/* {postComments.length > 0 && <PostListSimple postComments={postComments} /> } */}
       <AddComment visible={visible} setVisible={setVisible} />

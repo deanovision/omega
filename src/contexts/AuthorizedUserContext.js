@@ -24,9 +24,9 @@ export const AuthorizedUserProvider = ({children}) => {
       // console.log(user)
       if (user) {
         getUserById(user)
-          .then(() => {
-            const {email, displayName, uid} = user
-            setAuthUser(authUser => ({...authUser, email, name: displayName, uid}))
+          .then((res) => {
+            // const {email, displayName, uid} = user
+            setAuthUser({...res})
             setIsAuthorized(true)
           })
           .catch(err => console.log(err.message))

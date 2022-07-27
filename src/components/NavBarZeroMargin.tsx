@@ -5,6 +5,7 @@ import { useBooleanToggle } from '@mantine/hooks';
 import AuthorizedUserContext from '../contexts/AuthorizedUserContext';
 import {useNavigate} from 'react-router-dom'
 import logo from '../assets/omegalogo4.png'
+import PostModal from './PostModal.tsx'
 // import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 75;
 
@@ -139,11 +140,14 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
           {items}
         </Group>
         {/* <ToggleColorScheme /> */}
+        <Group spacing={25}>
+        <PostModal />
         <MediaQuery smallerThan="sm" styles={{display: 'none'}}>
           <Button radius="xl" onClick={(e)=> handleAuth(e)}>
             {isAuthorized ? "Logout" : "Login"}
           </Button>
         </MediaQuery>
+        </Group>
         <Burger
           opened={opened}
           onClick={() => toggleOpened()}

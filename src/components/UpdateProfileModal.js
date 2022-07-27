@@ -21,17 +21,17 @@ function UpdateProfileModal({user, align}) {
     <>
       <Modal
         opened={opened}
-        position="right"
         onClose={() => setOpened(false)}
-        padding="xl"
-        size="xl"
+        size="lg"
+        padding="xs"
       >
         <UpdateProfile user={user} setOpened={setOpened} />
       </Modal>
 
-      <Group position={align}>
+      <Group>
         <Button 
           size="xs" 
+          mt={10}
           uppercase
           leftIcon={<UserPlus size={20} />}
           variant="outline"
