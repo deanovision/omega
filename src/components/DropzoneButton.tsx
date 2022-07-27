@@ -70,12 +70,11 @@ function DropzoneButton({progress, uploadFile, setUploadUrl, setProgress}) {
               {status.accepted
                 ? 'Drop files here'
                 : status.rejected
-                ? 'Pdf file less than 30mb'
+                ? 'Only .png and jpeg files accepted'
                 : 'Click to upload profile picture'}
             </Text>
             <Text align="center" size="sm" mt="xs" color="dimmed">
-              Drag&apos;n&apos;drop files here to upload. We can accept only <i>.pdf</i> files that
-              are less than 30mb in size.
+              Drag&apos;n&apos;drop files here to upload. Only .png and .jpeg accepted
             </Text>
           </div>
         )}

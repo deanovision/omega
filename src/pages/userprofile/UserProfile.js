@@ -7,7 +7,8 @@ import UserProfileTabs from '../../components/UserProfileTabs.tsx'
 import { Notebook, Users } from 'tabler-icons-react'
 import {Container, Group, createStyles, Avatar, Card, Text, MediaQuery} from '@mantine/core'
 import { useParams, useNavigate } from 'react-router-dom'
-import EditProfileDrawer from '../../components/EditProfileDrawer'
+// import EditProfileDrawer from '../../components/EditProfileDrawer'
+import UpdateProfileModal from '../../components/UpdateProfileModal'
 // import SimpleNotification from '../../components/SimpleNotification'
 // import UpdateProfile from '../updateprofile/UpdateProfile'
 // import UserProfileMenu from '../../components/UserProfileMenu.tsx'
@@ -90,7 +91,7 @@ function UserProfile() {
               </Group>
               {
                 uid === authUser.uid ? 
-                <EditProfileDrawer align={"center"} user={user} /> 
+                <UpdateProfileModal align={"center"} user={user} /> 
                 : null
               }
             </Container>
@@ -127,7 +128,7 @@ function UserProfile() {
               </Group>
               {
                 uid === authUser.uid ? 
-                <EditProfileDrawer align={"left"} user={user} /> 
+                <UpdateProfileModal align={"left"} user={user} /> 
                 : null
               }
             </Container>
