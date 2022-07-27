@@ -39,7 +39,7 @@ const UpdateProfile = ({user, setOpened})=> {
   }
   return (
     <>
-    <Container size={420} my={40}>
+    <Container>
       <Title
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
