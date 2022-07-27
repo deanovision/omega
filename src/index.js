@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthorizedUserProvider } from './contexts/AuthorizedUserContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import { PageLinksProvider } from './contexts/PageLinksContext';
 import './index.css';
 import App from './App';
@@ -12,7 +13,9 @@ root.render(
     <BrowserRouter>
       <AuthorizedUserProvider>
         <PageLinksProvider>
-          <App />
+          <NotificationProvider>
+            <App />
+          </NotificationProvider>
         </PageLinksProvider>
       </AuthorizedUserProvider>
     </BrowserRouter>

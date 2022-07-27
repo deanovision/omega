@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import { auth, googleProvider } from '../../firebase/config';
 import { AlertCircle } from 'tabler-icons-react';
 import { GoogleIcon } from '../../components/GoogleIcon.tsx';
-import { getUserById } from '../../firebase/userModel';
+import { getUserById, addNewUser } from '../../firebase/userModel';
 import { 
   signInWithEmailAndPassword, 
   signInWithRedirect,
@@ -34,7 +34,11 @@ const Login = ()=> {
         console.log("Login user by ID", getUserById(user))
         getUserById(user)
           .then(res => {
-            res === undefined? navigate("../setup-profile", {replace: true}) : navigate("../auth/dashboard", {replace: true})
+            if(res === undefined){
+              addNewUser(user)
+              navigate(`../auth/users/${user.uid}`, {replace: true})
+            }
+            else {navigate("../auth/dashboard", {replace: true})}
           })
           .catch(err => console.log(err.message))
       } 

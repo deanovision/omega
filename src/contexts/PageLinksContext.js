@@ -1,11 +1,10 @@
 import {createContext, useState} from 'react'
-
 const PageLinksContext = createContext()
 
 export const PageLinksProvider = ({children}) => {
     const headerLinksInfo = [
       {label: 'Home', link: '/auth/dashboard'},
-      {label: 'Profile', link: '/auth/user'},
+      {label: 'Profile', link: `/auth/users/`},
       {label: 'Find People', link: '/auth/search-users'}
       ]
     let footerLinkInfo = [

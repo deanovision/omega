@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from 'react';
 import {  Outlet, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '../firebase/config';
-import {Loader} from '@mantine/core'
+import ContentSkeleton from './ContentSkeleton';
 import AuthorizedUserContext from '../contexts/AuthorizedUserContext';
 const ProtectedRoute = () => {
   const {isAuthorized, setIsAuthorized} = useContext(AuthorizedUserContext)
@@ -24,7 +24,7 @@ const ProtectedRoute = () => {
   if(isAuthorized === true) {
     return <Outlet />
   }else {
-    return <Loader size="xl" />
+    return <ContentSkeleton />
   }
 }
 export default ProtectedRoute

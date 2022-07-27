@@ -85,10 +85,20 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface HeaderResponsiveProps {
-  links: { link: string; label: string }[];
+  links: { link: string; label: string }[],
+  authUser: {
+    email: string,
+    userName: string,
+    name: string,
+    uid: string,
+    avatarUrl: string,
+    bio: string,
+    followers: Number,
+    posts: Number
+  }
 }
 
-export function NavBarZeroMargin({ links }: HeaderResponsiveProps) {
+export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
