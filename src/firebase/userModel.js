@@ -1,14 +1,46 @@
 import {db} from './config'
-import { setDoc, doc, getDoc } from "firebase/firestore"; 
+import { setDoc, doc, getDoc, Timestamp } from "firebase/firestore"; 
 import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
-export const addUser = (user)=> {
+export const addNewUser = (user)=> {
+  setDoc(doc(db, "users", user.uid), {
+    uid: user.uid,
+    name: user.displayName,
+    email: user.email,
+    userName: "",
+    avatarUrl: "",
+    bio: "",
+    followers: 0,
+    posts: 0,
+    createdAt: Timestamp.fromDate(new Date())
+  })
+    .then(() => {
+        console.log("success, user has been added", user.uid)
+        return user.uid
+    })
+    .catch(err => {
+        console.error("Error adding document", err)
+    })
+}
+export const updateUser = (user)=> {
+  setDoc(doc(db, "users", user.uid), user)
+    .then(() => {
+        console.log("success, user has been added", user.uid)
+        window.location.reload()
+    })
+    .catch(err => {
+        console.error("Error adding document", err)
+    })
+}
+export const addUser = (user, setError)=> {
     setDoc(doc(db, "users", user.uid), user)
       .then(() => {
           console.log("success, user has been added", user.uid)
+          setError("")
       })
       .catch(err => {
           console.error("Error adding document", err)
+          setError(err.message)
       })
   }
 export const addUserFromRedirectResult = (auth)=> {
@@ -38,4 +70,13 @@ export const getUserById = user => {
             return res.data()
         })
         .catch(err => console.log("Error getting document:", err))
+}
+
+export const fetchUser = uid => {
+  return getDoc(doc(db, "users", uid))
+    .then(res => {
+      console.log("users document data", res.data())
+      return res.data()
+    })
+    .catch(err => console.log("Error getting document:", err))
 }

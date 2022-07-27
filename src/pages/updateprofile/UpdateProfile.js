@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext} from 'react';
-import {useNavigate} from 'react-router-dom'
-import { addUser } from '../../firebase/userModel'
+import React, { useState, useContext} from 'react';
+// import {useNavigate} from 'react-router-dom'
+import { updateUser } from '../../firebase/userModel'
 import { AlertCircle } from 'tabler-icons-react';
 import DropzoneButton from '../../components/DropzoneButton.tsx'
 import { uploadAvatar } from '../../firebase/storage';
-import AuthorizedUserContext from '../../contexts/AuthorizedUserContext';
+import NotificationContext from '../../contexts/NotificationContext';
 import {
   TextInput,
   Paper,
@@ -15,66 +15,28 @@ import {
   Textarea
 } from '@mantine/core';
 
-const SetupProfile = ()=> {
-  let navigate = useNavigate()
-  const {authUser, isAuthorized} = useContext(AuthorizedUserContext)
+const UpdateProfile = ({user, setOpened})=> {
+//   let navigate = useNavigate()
+//   const {authUser, isAuthorized} = useContext(AuthorizedUserContext)
   const [error, setError] = useState("")
+  const {setMessage, setNotificationOpen} = useContext(NotificationContext)
   const [uploadProgress, setUploadProgress] = useState(0)
   const [avatarUrl, setAvatarUrl] = useState("")
-  const [profile, setProfile] = useState({...authUser})
-  const {email, name, uid, bio} = authUser
-
-  useEffect(()=> {
-    return isAuthorized === true ? 
-    setProfile(profile => ({...profile, email, name, uid, bio})) : 
-    navigate("../login", {replace: true})
-  }, [navigate, email, name, uid, isAuthorized, bio])
+  const [profile, setProfile] = useState({...user})
 
   const handleChanges = (e) => {
     setProfile({...profile, [e.target.name]: e.target.value})
-}
+  }
 
   const handleSubmit = (e)=> {
     e.preventDefault()
-    const {uid, name, userName, email, bio} = profile
-    const userData = {
-        uid: uid,
-        name: name,
-        userName: userName,
-        email: email,
-        bio: bio, 
-        avatarUrl: avatarUrl,
-        posts: 0,
-        followers: 0
-    }
-    const checkUser = []
-
-    for(const key in userData){
-        if(userData[key] === "") {
-            let promise = new Promise ((resolve, reject) => {
-            reject(new Error (`${key} is missing`))
-            })
-            checkUser.push(promise)
-        }
-        else{
-            let promise = new Promise ((resolve, reject) => {
-            resolve(userData[key])
-            })
-            checkUser.push(promise)
-        }
-    }
-    Promise.all(checkUser)
-      .then(()=> {
-        addUser(userData)
-        setError("")
-        navigate("../dashboard")
-    })
-      .catch(err => {
-        setError(err.message)
-        console.log(err.message)
-      })
+    avatarUrl === "" ? 
+    updateUser({...profile}, setError) :
+    updateUser({...profile, avatarUrl}, setError)
+    setOpened(false)
+    setNotificationOpen(true)
+    setMessage("Successfully updated your profile")
   }
-  // console.log("PROFILE", profile)
   return (
     <>
     <Container size={420} my={40}>
@@ -82,7 +44,7 @@ const SetupProfile = ()=> {
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
       >
-        Setup Your Profile
+        Update Your Profile
       </Title>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -117,6 +79,7 @@ const SetupProfile = ()=> {
           required />
         <Textarea
           placeholder="Tell people about yourself"
+          name="bio"
           onChange={e=> handleChanges(e)}
           value={profile.bio}
           label="Bio" />
@@ -133,4 +96,4 @@ const SetupProfile = ()=> {
     </>
   );
 }
-export default SetupProfile
+export default UpdateProfile

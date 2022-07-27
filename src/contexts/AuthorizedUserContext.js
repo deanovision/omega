@@ -6,18 +6,27 @@ import { getUserById } from '../firebase/userModel'
 const AuthorizedUserContext = createContext()
 
 export const AuthorizedUserProvider = ({children}) => {
-  const [authUser, setAuthUser] = useState({})
+  const [authUser, setAuthUser] = useState({
+    email: "",
+    userName: "",
+    name: "",
+    uid: "",
+    avatarUrl: "",
+    bio: "",
+    followers: 0,
+    posts: 0
+  })
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [colorScheme, setColorScheme] = useState('light');
 
   useEffect(()=> {
     onAuthStateChanged(auth, (user) => {
+      // console.log(user)
       if (user) {
         getUserById(user)
-          .then(res => {
-            const {email, name, userName} = res
-            console.log(res)
-            setAuthUser({email, name, userName, uid: user.uid})
+          .then(() => {
+            const {email, displayName, uid} = user
+            setAuthUser(authUser => ({...authUser, email, name: displayName, uid}))
             setIsAuthorized(true)
           })
           .catch(err => console.log(err.message))

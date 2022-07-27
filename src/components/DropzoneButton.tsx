@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Text, Group, createStyles, MantineTheme, useMantineTheme, Progress } from '@mantine/core';
-import { Dropzone, DropzoneStatus, MIME_TYPES } from '@mantine/dropzone';
+import { Dropzone, DropzoneStatus} from '@mantine/dropzone';
 import { CloudUpload } from 'tabler-icons-react';
 import { useContext } from "react";
 import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
