@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 .app-container {
@@ -37,4 +37,27 @@
   to {
     transform: rotate(360deg);
   }
+} */
+.main-container {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #1d2e2a);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.glass {
+  /* background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.6px);
+  -webkit-backdrop-filter: blur(12.6px); */
 }

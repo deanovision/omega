@@ -6,10 +6,10 @@ import {
   Text, 
   ScrollArea, 
   createStyles, 
-  TextInput 
+  TextInput ,
+  ActionIcon
 } from '@mantine/core';
-import { loremIpsum } from '../utils/dummyData'
-import { Search } from 'tabler-icons-react';
+import { Search, ArrowRight } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   listContainer: {
@@ -23,24 +23,24 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface UsersStackProps {
-  data: { login: {uuid: string}; picture: {thumbnail: string}; name: {first: string; last: string}; bio: string;}[]
+  data: { uid: string; avatarUrl: string; name: string; bio: string;}[]
 }
 
 function UsersList({ data }: UsersStackProps) {
   const { classes} = useStyles();
   const rows = data.map((item) => (
-    <tr key={item.login.uuid}>
+    <tr key={item.uid}>
       <td>
         <Group spacing="sm">
           <div className={classes.listContainer}>
             <div>
-            <Avatar size={50} src={item.picture.thumbnail} radius={40} />
+            <Avatar size={50} src={item.avatarUrl} radius={40} />
             </div>
             <div className={classes.textContainer}>
               <Text size="md" weight={500}>
-                {`${item.name.first} ${item.name.last}`}
+                {item.name}
               </Text>
-              <Text size="sm" lineClamp={1}>{loremIpsum}</Text>
+              <Text size="sm" lineClamp={1}>{item.bio}</Text>
             </div>
           </div>
         </Group>
@@ -56,6 +56,11 @@ function UsersList({ data }: UsersStackProps) {
         size="md"
         required
         icon={<Search size={14} />}
+        rightSection={
+        <ActionIcon size={32} radius="xl" color="blue" variant="filled">
+          <ArrowRight />
+        </ActionIcon>
+        }
       />
       <Table verticalSpacing="lg">
         <tbody>{rows}</tbody>

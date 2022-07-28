@@ -1,5 +1,5 @@
 import {db} from './config'
-import { setDoc, doc, getDoc, getDocs, addDoc, collection, query, where, orderBy} from "firebase/firestore"; 
+import { setDoc, doc, getDoc, getDocs, addDoc, collection, query, where, orderBy, onSnapshot} from "firebase/firestore"; 
 import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
 export const addPost = (post, callback)=> {
@@ -22,6 +22,30 @@ export const fetchPostsByUserId = async (uid, setPosts) => {
     // console.log(doc.id, " => ", doc.data());
     })
     setPosts(postsArray)
+}
+
+export const _fetchPostsByUserId = async (uid, posts, setPosts) => {
+    // let postsArray = []
+    try {
+        const q = query(collection(db, "posts"), where("uid", "==", uid), orderBy("createdAt", "desc"))
+        const querySnapshot = await onSnapshot(q, (snapShot)=> {
+            snapShot.forEach(post => {
+                // console.log(post.data())
+                setPosts([...posts, post.data()])
+            //    return post.type === "added" ? setPosts([...posts, post.data()]) : null
+            })
+        })
+        return querySnapshot
+    }
+    catch(err) {
+        console.log(err.message)
+    }
+    // querySnapshot.forEach((doc) => {
+    //     postsArray.push(doc.data())
+    // // doc.data() is never undefined for query doc snapshots
+    // // console.log(doc.id, " => ", doc.data());
+    // })
+    // setPosts(postsArray)
 }
 
 

@@ -46,7 +46,6 @@ const useStyles = createStyles((theme) => ({
 
 function UserProfile() {
     const [user, setUser] = useState({})
-    // const [comments, setComments] = useState([])
     const [posts, setPosts] = useState([])
     const { classes } = useStyles();
     const {authUser} = useContext(AuthorizedUserContext)
@@ -54,7 +53,6 @@ function UserProfile() {
     let navigate = useNavigate
 
     useEffect(()=>{
-      // console.log("UID USE PARAMS", uid)
       fetchUser(uid)
       .then(res => {
         setUser({...res})
@@ -63,16 +61,15 @@ function UserProfile() {
     },[uid, authUser.uid, navigate])
     useEffect(()=> {
       fetchPostsByUserId(uid, setPosts)
-      // fetchComments(setComments)
       .catch(err => console.log(err))
     }, [uid])
-    console.log("POSTS ====>", posts)
+
     return( 
       <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
         <Container mt={20} className={classes.containerMobile} size="xl">
           <Container p={0}>
-            <Card className={classes.profileHeaderMobile} withBorder p="xl" radius="sm">
+            <Card className={classes.profileHeaderMobile} withBorder p="xl" radius={0}>
             <Avatar radius={100} size={200} src={user?.avatarUrl} alt={user?.name} />
             <Container mr={10} ml={10}>
               <Text align="left" size="lg" weight={500} mt="sm">
@@ -109,7 +106,7 @@ function UserProfile() {
       <MediaQuery smallerThan="sm" styles={classes.desktop}>
         <Container mt={20} className={classes.container} size="xl">
           <Container>
-            <Card className={classes.profileHeader} withBorder p="xl" radius="sm">
+            <Card className={classes.profileHeader} withBorder p="xl" radius={0}>
             <Avatar radius={100} size={125} src={user?.avatarUrl} alt={user?.name} />
             <Container mr={10} ml={10}>
               <Text align="left" size="lg" weight={500} mt="sm">
@@ -121,7 +118,7 @@ function UserProfile() {
               <Group mb={10} noWrap spacing={10} mt={10}>
                 <Notebook size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">
-                  {user?.posts}
+                  {posts.length}
                 </Text>
                 <Users size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">
