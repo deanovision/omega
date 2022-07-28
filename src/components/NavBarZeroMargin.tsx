@@ -104,6 +104,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const {isAuthorized, setIsAuthorized} = useContext(AuthorizedUserContext)
+  console.log("======IS AUTHORIZED======>", isAuthorized)
   let navigate = useNavigate()
 
   const items = links.map((link) => (
@@ -141,7 +142,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         </Group>
         {/* <ToggleColorScheme /> */}
         <Group spacing={25}>
-        <PostModal />
+        {isAuthorized ? <PostModal /> : null}
         <MediaQuery smallerThan="sm" styles={{display: 'none'}}>
           <Button radius="xl" onClick={(e)=> handleAuth(e)}>
             {isAuthorized ? "Logout" : "Login"}

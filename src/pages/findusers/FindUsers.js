@@ -1,21 +1,20 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
-import { fetchUsers } from '../../utils/dummyData'
 import UsersList from '../../components/UsersList.tsx';
 import { Container, Card } from '@mantine/core';
+import {fetchUsers} from '../../firebase/userModel'
 
 function FindUsers() {
     const [users, setUsers] = useState([])
     useEffect(()=>{
         fetchUsers(setUsers)
-        .catch(err => console.log(err))
-    },[])
+    },[setUsers])
 
     return(
         <>
         <Container mt={20} size="md" px={0}>
         <Card withBorder p="xl" radius="sm">
-            {users?
+            {users.length > 0 ?
             <UsersList data={users} />
             : null
             }

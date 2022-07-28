@@ -121,7 +121,7 @@ function UserProfile() {
               <Group mb={10} noWrap spacing={10} mt={10}>
                 <Notebook size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">
-                  {user?.posts}
+                  {posts.length}
                 </Text>
                 <Users size={20} className={classes.icon} />
                 <Text size="sm" color="dimmed">

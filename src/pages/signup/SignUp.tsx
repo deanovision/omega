@@ -5,7 +5,7 @@ import {
     signInWithRedirect, 
     onAuthStateChanged} from "firebase/auth";
 import { auth, googleProvider } from '../../firebase/config';
-import {addUser} from '../../firebase/userModel'
+import {addNewUser} from '../../firebase/userModel'
 import { AlertCircle } from 'tabler-icons-react';
 import {GoogleIcon} from '../../components/GoogleIcon.tsx'
 import {
@@ -48,7 +48,7 @@ const SignUp = ()=> {
     signInWithRedirect(auth, googleProvider)
     .then((res)=> {
       console.log('sign in ', res)
-      addUser(res.user)
+      addNewUser(res.user)
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

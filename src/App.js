@@ -14,8 +14,8 @@ import FindUsers from './pages/findusers/FindUsers'
 import UserProfile from './pages/userprofile/UserProfile'
 import ProtectedRoute from './components/ProtectedRoute';
 import NavBarZeroMargin from './components/NavBarZeroMargin.tsx';
-import SetupProfile from './pages/setupprofile/SetupProfile';
 import SimpleNotification from './components/SimpleNotification';
+// import SetupProfile from './pages/setupprofile/SetupProfile';
 
 function App() {
   const {colorScheme, setColorScheme, authUser} = useContext(AuthorizedUserContext)
@@ -46,7 +46,7 @@ function App() {
               <Route element={<UserProfile />} path="users" />
               <Route element={<Dashboard />} path="dashboard" />
               <Route element={<FindUsers />} path="search-users" />
-              <Route element={<SetupProfile />} path="setup-profile" />
+              {/* <Route element={<SetupProfile />} path="setup-profile" /> */}
             </Route>
             <Route element={<Login />} path="/login" />
             <Route element={<SignUp />} path="/signup" />
