@@ -1,9 +1,20 @@
 import { useState } from 'react';
 import { Tabs, Card, MediaQuery } from '@mantine/core';
 import { TrendingUp, Notebook, World } from 'tabler-icons-react';
+import '../App.css'
+
+// const useStyles = createStyles((theme) => ({
+//   card: {
+//     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "#f2f2f4",
+//     maxWidth: "820px",
+//     margin: "auto",
+
+//   },
+// }));
 
 function DashboardTabs({timeline, trendingNewsInfo}) {
   const [activeTab, setActiveTab] = useState(0);
+  // const {classes} = useStyles()
   return (
     <>
       <MediaQuery largerThan="sm" styles={{display: 'none'}}>
@@ -27,10 +38,11 @@ function DashboardTabs({timeline, trendingNewsInfo}) {
       </MediaQuery>
       {/* Desktop     */}
       <MediaQuery smallerThan="sm" styles={{display: 'none'}}>
-        <Card withBorder pl={0} pr={0} pt={0} pb={5} p="xl" radius="sm">
-            <Tabs active={activeTab} onTabChange={setActiveTab}>
+        <Card className="glass" pl={0} pr={0} pt={0} pb={5} p="xl" radius="sm">
+            <Tabs orientation='vertical' active={activeTab} onTabChange={setActiveTab}>
                 <Tabs.Tab 
                   label="NEWS FEED" 
+                  style={{whiteSpace: 'nowrap'}}
                   icon={<Notebook size={14} />}>
                     {timeline}
                 </Tabs.Tab>
@@ -42,7 +54,7 @@ function DashboardTabs({timeline, trendingNewsInfo}) {
                 <Tabs.Tab 
                   label="EXPLORE" 
                   icon={<World size={14} />} />
-            </Tabs>
+            </Tabs> 
         </Card>
       </MediaQuery>
     </>

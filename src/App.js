@@ -15,6 +15,7 @@ import UserProfile from './pages/userprofile/UserProfile'
 import ProtectedRoute from './components/ProtectedRoute';
 import NavBarZeroMargin from './components/NavBarZeroMargin.tsx';
 import SimpleNotification from './components/SimpleNotification';
+import './App.css'
 // import SetupProfile from './pages/setupprofile/SetupProfile';
 
 function App() {
@@ -24,10 +25,9 @@ function App() {
   const toggleColorScheme = (value) => {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
   }
-  const getColorScheme = (scheme) => {
-    return scheme === 'dark'? {backgroundColor: "#424342"} :  {backgroundColor: "#eaeaec"}
-  }
-
+  // const getColorScheme = (scheme) => {
+  //   return scheme === 'dark'? {backgroundColor: "#424342"} :  {backgroundColor: "#eaeaec"}
+  // }
   const headerLinksInfo = [
     {label: 'Home', link: '/auth/dashboard'},
     {label: 'Profile', link: `/auth/users/${authUser.uid}`},
@@ -37,7 +37,7 @@ function App() {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>      
       <MantineProvider theme={{ fontFamily: 'Open Sans', colorScheme: `${colorScheme}` }} withGlobalStyles withNormalizeCSS >
-        <div style={getColorScheme(colorScheme)}>
+        <div className='main-container'>
           <NavBarZeroMargin authUser={authUser} links={headerLinksInfo} />
           <Routes>
             <Route element={<Home />} path="/" />

@@ -13,6 +13,8 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: 'relative',
     zIndex: 1,
+    // background: "linear-gradient(-180deg, #ee7752, #e73c7e, #23a6d5, #1d2e2a)",
+    // backgroundSize: "400% 400%",
     backgroundColor: theme.colorScheme === 'dark' ?  "#212227" : theme.colors.white
   },
   logo: {
