@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     zIndex: 1,
     // background: "linear-gradient(-180deg, #ee7752, #e73c7e, #23a6d5, #1d2e2a)",
     // backgroundSize: "400% 400%",
-    backgroundColor: theme.colorScheme === 'dark' ?  "#212227" : theme.colors.white
+    // backgroundColor: theme.colorScheme === 'dark' ?  "#212227" : theme.colors.white
   },
   logo: {
     maxWidth: "120px",
@@ -150,13 +150,13 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
             {isAuthorized ? "Logout" : "Login"}
           </Button>
         </MediaQuery>
-        </Group>
         <Burger
           opened={opened}
           onClick={() => toggleOpened()}
           className={classes.burger}
           size="sm"
         />
+        </Group>
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (

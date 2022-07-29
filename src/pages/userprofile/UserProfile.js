@@ -11,6 +11,8 @@ import {Container, Group, createStyles, Avatar, Card, Text, MediaQuery} from '@m
 import { useParams, useNavigate } from 'react-router-dom'
 // import EditProfileDrawer from '../../components/EditProfileDrawer'
 import UpdateProfileModal from '../../components/UpdateProfileModal'
+import ContentSkeleton from '../../components/ContentSkeleton'
+import FollowUser from '../../components/FollowUser'
 // import SimpleNotification from '../../components/SimpleNotification'
 // import UpdateProfile from '../updateprofile/UpdateProfile'
 // import UserProfileMenu from '../../components/UserProfileMenu.tsx'
@@ -94,11 +96,11 @@ function UserProfile() {
               {
                 uid === authUser.uid ? 
                 <UpdateProfileModal align={"center"} user={user} /> 
-                : null
+                : <FollowUser />
               }
             </Container>
             </Card>
-            <UserProfileTabs timeline={<PostListSimple posts={posts} />} />
+            <UserProfileTabs timeline={posts.length > 0? <PostListSimple posts={posts} /> : <ContentSkeleton/>} />
           </Container>
           {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>
@@ -131,11 +133,11 @@ function UserProfile() {
               {
                 uid === authUser.uid ? 
                 <UpdateProfileModal align={"left"} user={user} /> 
-                : null
+                : <FollowUser />
               }
             </Container>
             </Card>
-            <UserProfileTabs timeline={<PostListSimple posts={posts} />} />
+            <UserProfileTabs timeline={posts.length > 0? <PostListSimple posts={posts} /> : <ContentSkeleton/>} />
           </Container>
           {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>
