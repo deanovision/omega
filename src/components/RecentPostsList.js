@@ -37,7 +37,7 @@ function RecentPostList({posts, postComments}) {
       })
     })
     const sortedPosts = recentPosts.sort((post1, post2) => Number(post2.createdAt) - Number(post1.createdAt))
-    console.log("SORTED POSTS ========>", sortedPosts)
+    // console.log("SORTED POSTS ========>", sortedPosts)
     const postList = sortedPosts.map((post, index) => {
       const postCreatedAt = new Timestamp(post.createdAt.seconds, post.createdAt.nanoseconds).toDate()
       // console.log("CREATED AT ======>",Number(postCreatedAt))
