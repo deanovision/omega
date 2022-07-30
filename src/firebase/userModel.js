@@ -1,5 +1,5 @@
 import {db} from './config'
-import { setDoc, doc, getDoc, Timestamp, getDocs, collection, query, orderBy } from "firebase/firestore"; 
+import { setDoc, doc, getDoc, Timestamp, getDocs, collection, query, orderBy, updateDoc, arrayUnion } from "firebase/firestore"; 
 // import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
 export const addNewUser = (user)=> {
@@ -66,6 +66,19 @@ export const fetchUsers = async (setUsers) => {
   catch (error) {
     console.error(error.message)
   }
+
+}
+
+
+export const followUser = (myUid, userUid)=> {
+  updateDoc(doc(db, 'users', myUid), {
+    following: arrayUnion(userUid)
+  }).then(res => {
+    console.log("user successfully added", res)
+    setDoc(doc(db, "followers", userUid), {
+      followerList: arrayUnion(myUid)
+    }, {merge: true})
+  }).catch(err => console.log(err.message))
 
 }
 // export const addUser = (user, setError)=> {

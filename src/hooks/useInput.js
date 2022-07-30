@@ -5,7 +5,6 @@ export const useInput = (initialValue, callback) => {
 
     const handleChanges = e => {
         setInput({...initialValue, [e.target.name]: e.target.value})
-        console.log(input)
     }
     const handleSubmit = e => {
         e.preventDefault()

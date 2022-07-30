@@ -34,7 +34,8 @@ const SignUp = ()=> {
         if (user) {
           const uid = user.uid;
           console.log("user ID",uid)
-          navigate("../auth/setup-profile", {replace: true})
+          addNewUser(user)
+          navigate(`../auth/users/${uid}`, {replace: true})
         } else {
           console.log("user is signed out")
         }
@@ -48,7 +49,6 @@ const SignUp = ()=> {
     signInWithRedirect(auth, googleProvider)
     .then((res)=> {
       console.log('sign in ', res)
-      addNewUser(res.user)
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

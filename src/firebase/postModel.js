@@ -1,52 +1,88 @@
 import {db} from './config'
-import { setDoc, doc, getDoc, getDocs, addDoc, collection, query, where, orderBy, onSnapshot} from "firebase/firestore"; 
+import { setDoc, doc, getDoc, getDocs, addDoc, collection, query, where, orderBy, arrayUnion, Timestamp} from "firebase/firestore"; 
 import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
-export const addPost = (post, callback)=> {
-  addDoc(collection(db, "posts"), post)
+export const addPost = (uid, post, callback)=> {
+    // db.collection("posts").add(post)
+    addDoc(collection(db, "posts"), post)
     .then((res) => {
-        console.log("success, post has been added", res)
+        console.log("success, post has been added", res.id)
         callback()
+        updateRecentPosts(uid, post, res.id)
     })
     .catch(err => {
         console.error("Error adding document", err)
     })
 }
+export const updateRecentPosts = (uid ,post, postId)=> {
+    setDoc(doc(db, "followers", uid), {
+        recentPosts: arrayUnion({...post, postId: postId}),
+        lastPost: Timestamp.now(),
+        uid: uid
+    }, {merge: true})
+      .then((res) => {
+          console.log("success, post has been added to recent posts", res)
+      })
+      .catch(err => {
+          console.error("Error adding document", err)
+      })
+  }
 export const fetchPostsByUserId = async (uid, setPosts) => {
-    const q = query(collection(db, "posts"), where("uid", "==", uid), orderBy("createdAt", "desc"))
-    const querySnapshot = await getDocs(q);
-    let postsArray = []
-    querySnapshot.forEach((doc) => {
-        postsArray.push(doc.data())
-    // doc.data() is never undefined for query doc snapshots
-    // console.log(doc.id, " => ", doc.data());
-    })
-    setPosts(postsArray)
-}
-
-export const _fetchPostsByUserId = async (uid, posts, setPosts) => {
-    // let postsArray = []
     try {
         const q = query(collection(db, "posts"), where("uid", "==", uid), orderBy("createdAt", "desc"))
-        const querySnapshot = await onSnapshot(q, (snapShot)=> {
-            snapShot.forEach(post => {
-                // console.log(post.data())
-                setPosts([...posts, post.data()])
-            //    return post.type === "added" ? setPosts([...posts, post.data()]) : null
-            })
+        const querySnapshot = await getDocs(q);
+        let postsArray = []
+        querySnapshot.forEach((doc) => {
+            postsArray.push(doc.data())
         })
-        return querySnapshot
+        setPosts(postsArray)
     }
     catch(err) {
         console.log(err.message)
     }
-    // querySnapshot.forEach((doc) => {
-    //     postsArray.push(doc.data())
-    // // doc.data() is never undefined for query doc snapshots
-    // // console.log(doc.id, " => ", doc.data());
-    // })
-    // setPosts(postsArray)
 }
+
+export const fetchRecentPosts = async (uid)=> {
+    try {
+        const q = query(collection(db, "followers"), 
+        where("followerList", "array-contains", uid), 
+        orderBy("lastPost", "desc"))
+        const querySnapshot = await getDocs(q)
+        let postsArray = []
+        querySnapshot.forEach((doc) => {
+            postsArray.push(doc.data())
+        })
+        console.log("RECENT POSTS ==============>", postsArray)        
+    }
+    catch(err) {
+        console.log(err.message)
+    }
+
+}
+
+// export const _fetchPostsByUserId = async (uid, posts, setPosts) => {
+//     // let postsArray = []
+//     try {
+//         const q = query(collection(db, "posts"), where("uid", "==", uid), orderBy("createdAt", "desc"))
+//         const querySnapshot = await onSnapshot(q, (snapShot)=> {
+//             snapShot.forEach(post => {
+//                 // console.log(post.data())
+//                 setPosts([...posts, post.data()])
+//             //    return post.type === "added" ? setPosts([...posts, post.data()]) : null
+//             })
+//         })
+//         return querySnapshot
+//     }
+//     catch(err) {
+//         console.log(err.message)
+//     }
+//     // querySnapshot.forEach((doc) => {
+//     //     postsArray.push(doc.data())
+//     // // doc.data() is never undefined for query doc snapshots
+//     // // console.log(doc.id, " => ", doc.data());
+//     // })
+//     // setPosts(postsArray)
+// }
 
 
 

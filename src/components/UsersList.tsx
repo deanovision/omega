@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { 
   Avatar, 
   Table, 
@@ -7,17 +7,30 @@ import {
   ScrollArea, 
   createStyles, 
   TextInput ,
-  ActionIcon
+  ActionIcon,
 } from '@mantine/core';
-import { Search, ArrowRight } from 'tabler-icons-react';
+import { Search, ArrowRight} from 'tabler-icons-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   listContainer: {
     display: "flex"
   },
+  container: {
+    display: "flex",
+    alignItems: "center"
+  },
+  userInfo: {
+    width: "90%"
+  },
+  buttonContainer: {
+    width: "10%"
+  },
 
   textContainer: {
+    width: "100%",
     textAlign: "left", 
+    justifyContent: "space-between",
     paddingLeft: 20
   },
 }));
@@ -27,11 +40,28 @@ interface UsersStackProps {
 }
 
 function UsersList({ data }: UsersStackProps) {
+  // const theme = useMantineTheme();
+  const [users] = useState(data)
+  const [search, setSearch] = useState("")
   const { classes} = useStyles();
-  const rows = data.map((item) => (
+
+  useEffect(()=> {
+    // implement extended search by 
+    // querying database if search results 
+    // from filtered array ever hits 0
+    // database query would include the 
+    // current search term and set new 
+    // usersList based on what is returned
+  }, [])
+
+  const filteredUsers = users.filter(user => {
+    return user.name.toLowerCase().includes(search.toLowerCase())
+  })
+  const rows = filteredUsers.map((item) => (
     <tr key={item.uid}>
       <td>
-        <Group spacing="sm">
+        <Link className={classes.container} style={{textDecoration: 'none', color: 'inherit'}} to={`/auth/users/${item.uid}`}>
+        <Group className={classes.userInfo} spacing="sm">
           <div className={classes.listContainer}>
             <div>
             <Avatar size={50} src={item.avatarUrl} radius={40} />
@@ -44,13 +74,18 @@ function UsersList({ data }: UsersStackProps) {
             </div>
           </div>
         </Group>
+        </Link>
       </td>
     </tr>
   ));
+  const handleChanges = e => {
+    setSearch(e.target.value)
+  }
 
   return (
     <ScrollArea>
       <TextInput
+        onChange={(e)=> handleChanges(e)}
         placeholder="Search"
         radius="xl"
         size="md"
