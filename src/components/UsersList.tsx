@@ -10,6 +10,7 @@ import {
   ActionIcon,
 } from '@mantine/core';
 import { Search, ArrowRight} from 'tabler-icons-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   listContainer: {
@@ -58,7 +59,8 @@ function UsersList({ data }: UsersStackProps) {
   })
   const rows = filteredUsers.map((item) => (
     <tr key={item.uid}>
-      <td className={classes.container}>
+      <td>
+        <Link className={classes.container} style={{textDecoration: 'none', color: 'inherit'}} to={`/auth/users/${item.uid}`}>
         <Group className={classes.userInfo} spacing="sm">
           <div className={classes.listContainer}>
             <div>
@@ -72,7 +74,7 @@ function UsersList({ data }: UsersStackProps) {
             </div>
           </div>
         </Group>
-
+        </Link>
       </td>
     </tr>
   ));

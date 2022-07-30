@@ -27,7 +27,8 @@ const useStyles = createStyles((theme) => ({
   },
   profileHeader: {
     display: "flex",
-    alignItems:"center"
+    alignItems:"center",
+    minWidth: "715px"
   },
   mobile: {
     display: 'none',

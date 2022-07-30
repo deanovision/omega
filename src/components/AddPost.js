@@ -1,5 +1,5 @@
 import { useContext} from 'react';
-import { serverTimestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
 import { Textarea, Button, Container, Card, createStyles, Group, Divider, Avatar} from '@mantine/core';
 import { addPost } from '../firebase/postModel';
 import { useInput } from '../hooks/useInput';
@@ -26,7 +26,7 @@ function AddPost({setOpened}) {
       uid: uid,
       body: "",
       comments: [],
-      createdAt: serverTimestamp(),
+      createdAt: Timestamp.now(),
       createdBy: name,
       postedBy: name,
       postedByAvatarUrl: avatarUrl,
@@ -34,7 +34,7 @@ function AddPost({setOpened}) {
       numberOfLikes: 0,
     }  
   const {input, setInput, handleChanges, handleSubmit} = useInput(initialValue, ()=> {
-    addPost(input, ()=> {
+    addPost(uid, input, ()=> {
         setOpened(false)
         setMessage("Posted")
         setNotificationOpen(true)

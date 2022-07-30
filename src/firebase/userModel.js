@@ -75,6 +75,9 @@ export const followUser = (myUid, userUid)=> {
     following: arrayUnion(userUid)
   }).then(res => {
     console.log("user successfully added", res)
+    setDoc(doc(db, "followers", userUid), {
+      followerList: arrayUnion(myUid)
+    }, {merge: true})
   }).catch(err => console.log(err.message))
 
 }
