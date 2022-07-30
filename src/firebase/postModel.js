@@ -42,7 +42,7 @@ export const fetchPostsByUserId = async (uid, setPosts) => {
     }
 }
 
-export const fetchRecentPosts = async (uid)=> {
+export const fetchRecentPosts = async (uid, setPosts)=> {
     try {
         const q = query(collection(db, "followers"), 
         where("followerList", "array-contains", uid), 
@@ -52,7 +52,8 @@ export const fetchRecentPosts = async (uid)=> {
         querySnapshot.forEach((doc) => {
             postsArray.push(doc.data())
         })
-        console.log("RECENT POSTS ==============>", postsArray)        
+        setPosts(postsArray)
+        // console.log("RECENT POSTS ==============>", postsArray)        
     }
     catch(err) {
         console.log(err.message)

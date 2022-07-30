@@ -7,7 +7,7 @@ import { Timestamp } from 'firebase/firestore';
 const useStyles = createStyles((theme) => ({
     card: {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "#f2f2f4",
-      maxWidth: "820px",
+      minWidth: "820px",
       margin: "auto",
 
     },
@@ -28,11 +28,19 @@ const useStyles = createStyles((theme) => ({
     }
   }));
 
-function PostListSimple({posts, postComments}) {
+function RecentPostList({posts, postComments}) {
     const { classes} = useStyles();
-
-    const postList = posts.map((post, index) => {
+    const recentPosts = []
+    posts.forEach(post => {
+      post.recentPosts.forEach(post => {
+        recentPosts.push(post)
+      })
+    })
+    const sortedPosts = recentPosts.sort((post1, post2) => Number(post2.createdAt) - Number(post1.createdAt))
+    console.log("SORTED POSTS ========>", sortedPosts)
+    const postList = sortedPosts.map((post, index) => {
       const postCreatedAt = new Timestamp(post.createdAt.seconds, post.createdAt.nanoseconds).toDate()
+      // console.log("CREATED AT ======>",Number(postCreatedAt))
       return (
         <div key={index} className={classes.comment}>
           <PostSimple
@@ -64,4 +72,4 @@ function PostListSimple({posts, postComments}) {
       </>
     )
 }
-export default PostListSimple
+export default RecentPostList
