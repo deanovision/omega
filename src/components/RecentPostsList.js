@@ -1,8 +1,7 @@
 // import CommentSimple from './CommentSimple.tsx'
 import PostSimple from "./PostSimple.tsx";
-import { relativeTime } from "../utils/dummyData";
 import { createStyles, Card, Divider, MediaQuery } from "@mantine/core";
-import { Timestamp } from "firebase/firestore";
+// import { Timestamp } from "firebase/firestore";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -42,10 +41,10 @@ function RecentPostList({ posts, postComments }) {
   );
   // console.log("SORTED POSTS ========>", sortedPosts)
   const postList = sortedPosts.map((post, index) => {
-    const postCreatedAt = new Timestamp(
-      post.createdAt.seconds,
-      post.createdAt.nanoseconds
-    ).toDate();
+    // const postCreatedAt = new Timestamp(
+    //   post.createdAt.seconds,
+    //   post.createdAt.nanoseconds
+    // ).toDate();
     // console.log("CREATED AT ======>",Number(postCreatedAt))
     return (
       <div key={index} className={classes.comment}>

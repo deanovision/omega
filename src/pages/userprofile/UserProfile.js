@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import AuthorizedUserContext from "../../contexts/AuthorizedUserContext";
-// import CommentListSimple from '../../components/CommentListSimple'
 import PostListSimple from "../../components/PostListSimple";
-// import {fetchComments} from '../../utils/dummyData'
 import { fetchUser } from "../../firebase/userModel";
 import { fetchPostsByUserId } from "../../firebase/postModel";
 import UserProfileTabs from "../../components/UserProfileTabs.tsx";
@@ -17,14 +15,9 @@ import {
   MediaQuery,
 } from "@mantine/core";
 import { useParams, useNavigate } from "react-router-dom";
-// import EditProfileDrawer from '../../components/EditProfileDrawer'
 import UpdateProfileModal from "../../components/UpdateProfileModal";
 import ContentSkeleton from "../../components/ContentSkeleton";
 import FollowUser from "../../components/FollowUser";
-// import SimpleNotification from '../../components/SimpleNotification'
-// import UpdateProfile from '../updateprofile/UpdateProfile'
-// import UserProfileMenu from '../../components/UserProfileMenu.tsx'
-// import SimpleDrawer from '../../components/SimpleDrawer'
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -76,7 +69,6 @@ function UserProfile() {
   useEffect(() => {
     fetchPostsByUserId(uid, setPosts).catch((err) => console.log(err));
   }, [uid]);
-  console.log(posts, "<==================");
   return (
     <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
@@ -137,7 +129,6 @@ function UserProfile() {
               }
             />
           </Container>
-          {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>
       </MediaQuery>
       <MediaQuery smallerThan="sm" styles={classes.desktop}>
@@ -198,7 +189,6 @@ function UserProfile() {
               }
             />
           </Container>
-          {/* <SimpleDrawer content={<UserProfileMenu mainLinks={userLinks} />} /> */}
         </Container>
       </MediaQuery>
     </>
