@@ -9,6 +9,7 @@ const useStyles = createStyles((theme) => ({
     // paddingTop: theme.spacing.sm,
     textAlign: "left",
     paddingLeft: "0px",
+    wordBreak: "break-all",
   },
   card: {
     backgroundColor:
@@ -71,7 +72,7 @@ function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
   const { classes } = useStyles();
   return (
     <Card shadow="xl" className={classes.card}>
-      <Group align="initial" className={classes.userHeader}>
+      <Group noWrap align="initial" className={classes.userHeader}>
         <Avatar size={30} src={author.image} alt={author.name} radius="xl" />
         <div>
           <Group spacing={5}>

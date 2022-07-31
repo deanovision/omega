@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useInput } from "../hooks/useInput";
 import { Timestamp } from "firebase/firestore";
 import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
+import NotificationContext from "../contexts/NotificationContext";
 import { addComment } from "../firebase/postModel";
 
 const useStyles = createStyles((theme) => ({
@@ -16,8 +17,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function AddComment({ visible, post, posts, setPosts }) {
+function AddComment({
+  visible,
+  setVisible,
+  post,
+  setCommentsList,
+  commentsList,
+}) {
   const { authUser } = useContext(AuthorizedUserContext);
+  const { setNotificationOpen, setMessage } = useContext(NotificationContext);
   const initialValue = {
     uid: authUser.uid,
     body: "",
@@ -28,18 +36,27 @@ function AddComment({ visible, post, posts, setPosts }) {
     numberOfLikes: 0,
   };
   const { classes } = useStyles();
-  const { handleChanges, handleSubmit, input } = useInput(initialValue, () => {
-    addComment(post.postId, post, input);
-    const updatedPosts = posts;
-    updatedPosts.forEach((postItem) => {
-      if (postItem.postId === post.postId) {
-        console.log(postItem.postId === post.postId);
-        return { ...postItem, comments: [...postItem.comments, input] };
-      }
-    });
-    // console.log(updatedPosts);
-    setPosts(...updatedPosts);
-  });
+  const { handleChanges, handleSubmit, input, setInput } = useInput(
+    initialValue,
+    () => {
+      addComment(post.postId, post, input);
+      setCommentsList([...commentsList, input]);
+      setInput(initialValue);
+      setVisible(false);
+      setNotificationOpen(true);
+      setMessage("Comment added");
+      // const updatedComments = commentsList;
+      // updatedComments.forEach((comment) => {
+      //   if (postItem.postId === post.postId) {
+      //     console.log(postItem.postId === post.postId);
+      //     return { ...postItem, comments: [...postItem.comments, input] };
+      //   }
+
+      // });
+      // console.log();
+      // let thing = JSON.parse(JSON.stringify(updatedPosts));
+    }
+  );
 
   return (
     <Transition

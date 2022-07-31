@@ -51,7 +51,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface CommentSimpleProps {
+interface PostSimpleProps {
   postedAt: string;
   body: string;
   author: {
@@ -80,10 +80,17 @@ interface CommentSimpleProps {
   setPosts: Function;
 }
 
-function PostSimple({ post, posts, setPosts }: CommentSimpleProps) {
+function PostSimple({ post }: PostSimpleProps) {
+  const samplePost = {
+    createdAt: "",
+    body: "",
+    postedBy: "",
+    postedByAvatarUrl: "",
+  };
+  const [commentsList, setCommentsList] = useState(post.comments);
   const [thumbsUp, setThumbsUp] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { createdAt, body, postedBy, postedByAvatarUrl } = post;
+  const { createdAt, body, postedBy, postedByAvatarUrl } = post || samplePost;
   // const clickOutsideRef = useClickOutside(() => setVisible(false));
 
   function handleEngagement() {
@@ -138,8 +145,10 @@ function PostSimple({ post, posts, setPosts }: CommentSimpleProps) {
           </Group>
         </div>
       </Group>
-      <AddComment {...{ post, posts, setPosts, visible, setVisible }} />
-      <CommentListSimple comments={post.comments} />
+      <AddComment
+        {...{ post, commentsList, setCommentsList, visible, setVisible }}
+      />
+      <CommentListSimple comments={commentsList} />
     </Card>
   );
 }
