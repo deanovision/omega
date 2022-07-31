@@ -1,6 +1,6 @@
 import CommentSimple from './CommentSimple.tsx'
-import { loremIpsum, relativeTime } from '../utils/dummyData'
-import { createStyles, Card, Divider, MediaQuery } from '@mantine/core';
+import { formatTimestamp } from '../utils/helperFunctions'
+import { createStyles, MediaQuery } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -21,7 +21,8 @@ const useStyles = createStyles((theme) => ({
       margin: "auto",
     },
     comment: {
-      marginTop: "30px"
+      marginTop: "0px",
+      // padding: "0px"
     }
   }));
 
@@ -31,29 +32,28 @@ function CommentListSimple({comments}) {
       return (
         <div key={index} className={classes.comment}>
           <CommentSimple
-            postedAt={relativeTime(1658553610894)}
-            body={loremIpsum}
+            postedAt={formatTimestamp(comment?.createdAt.seconds, comment?.createdAt.nanoseconds)}
+            body={comment?.body}
             author={{
-              name: `${comment?.name.first} ${comment?.name.last}`,
-              image: comment?.picture.medium
+              name: comment?.createdBy,
+              image: comment?.postedByAvatarUrl
               }
             }
             />
-            <Divider my="sm" />
         </div>
       )
     })
     return(
       <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
-        <Card shadow="xl" withBorder radius="sm" pl={0} pr={0} className={classes.cardMobile}>
+        <div>
           {commentList}
-        </Card>
+        </div>
       </MediaQuery>
       <MediaQuery smallerThan="sm" styles={classes.desktop}>
-        <Card shadow="xl" withBorder radius="sm" className={classes.card}>
+        <div>
           {commentList}
-        </Card>
+        </div>
       </MediaQuery>      
       </>
     )

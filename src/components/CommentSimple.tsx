@@ -1,38 +1,47 @@
-import React, {useState} from 'react';
-import { createStyles, Text, Avatar, Group, Card, ActionIcon } from '@mantine/core';
-import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
-// import { useClickOutside } from '@mantine/hooks';
-import AddComment from './AddComment.tsx';
+import React from "react";
+import { createStyles, Text, Avatar, Group, Card } from "@mantine/core";
+// import { ThumbUp, RotateClockwise2, Message2 } from 'tabler-icons-react';
+// // import { useClickOutside } from '@mantine/hooks';
+// import AddComment from './AddComment.tsx';
 
 const useStyles = createStyles((theme) => ({
   body: {
-    paddingTop: theme.spacing.sm,
-    textAlign: "left"
+    // paddingTop: theme.spacing.sm,
+    textAlign: "left",
+    paddingLeft: "0px",
   },
   card: {
-    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
     maxWidth: "820px",
     margin: "auto",
-
+    // padding: "0px"
+    // borderBottom: "1px solid black",
+    // borderRadius: "0px"
+    // marginTop: "5px"
   },
   postedAt: {
-    textAlign: "left"
+    textAlign: "left",
   },
-  engagement :{
-    paddingTop: 10
+  engagement: {
+    paddingTop: 10,
+    marginLeft: -10,
   },
   icons: {
-    color: theme.colorScheme === 'dark' ? "#FFF" : theme.colors.gray[7]    
+    color: theme.colorScheme === "dark" ? "#FFF" : theme.colors.gray[7],
   },
   liked: {
-    color: theme.colors.blue[5]
+    color: theme.colors.blue[5],
   },
   visible: {
-    display: "block"
+    display: "block",
   },
   hidden: {
-    display: "none"
-  }
+    display: "none",
+  },
+  userHeader: {
+    marginLeft: "50px",
+  },
 }));
 
 interface CommentSimpleProps {
@@ -42,64 +51,43 @@ interface CommentSimpleProps {
     name: string;
     image: string;
   };
+  postComments: {
+    postedAt: string;
+    body: string;
+    author: {
+      name: string;
+      image: string;
+    };
+  }[];
+  post: {
+    comments: {}[];
+  };
 }
 
 function CommentSimple({ postedAt, body, author }: CommentSimpleProps) {
-  const [thumbsUp, setThumbsUp] = useState(false)
-  const [visible, setVisible] = useState(false)
+  // const [visible, setVisible] = useState(false)
   // const clickOutsideRef = useClickOutside(() => setVisible(false));
 
-  function handleEngagement() {
-   return thumbsUp ? classes.liked : "icons"
-  }
   const { classes } = useStyles();
   return (
-    <Card withBorder p="xl" radius="sm" className={classes.card}>
-      <Group>
-        <Avatar size="lg" src={author.image} alt={author.name} radius="xl" />
+    <Card shadow="xl" className={classes.card}>
+      <Group align="initial" className={classes.userHeader}>
+        <Avatar size={30} src={author.image} alt={author.name} radius="xl" />
         <div>
-          <Text size="sm">{author.name}</Text>
+          <Group spacing={5}>
+            <Text size="sm" weight={500}>
+              {author.name}
+            </Text>
+            <Text className={classes.body} size="sm">
+              {body}
+            </Text>
+          </Group>
           <Text className={classes.postedAt} size="xs" color="dimmed">
             {postedAt}
           </Text>
         </div>
       </Group>
-      <Text className={classes.body} size="sm">
-        {body}
-      </Text>
-      <Group className={classes.engagement} spacing="xl">
-        <ActionIcon size="xl" radius="lg">
-          <div>
-            <Message2 
-              strokeWidth={1} 
-              size={36} 
-              className={classes.icons} 
-              onClick={()=> setVisible(!visible)}
-              />
-            </div>
-        </ActionIcon>
-        <ActionIcon size="xl" radius="lg">
-          <div>
-            <ThumbUp 
-              strokeWidth={1} 
-              size={36} 
-              className={handleEngagement()} 
-              onClick={()=> setThumbsUp(!thumbsUp) } 
-              />
-          </div>
-        </ActionIcon>
-        <ActionIcon size="xl" radius="lg">
-        <div>
-          <RotateClockwise2 
-            strokeWidth={1} 
-            size={36} 
-            className={classes.icons} 
-            />
-        </div>
-        </ActionIcon>        
-      </Group>
-      <AddComment visible={visible} setVisible={setVisible} />
-      </Card>
+    </Card>
   );
 }
-export default CommentSimple
+export default CommentSimple;
