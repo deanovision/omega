@@ -160,7 +160,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         />
 
         <Group spacing={5} className={classes.links}>
-          {items}
+          {isAuthorized ? items : null}
         </Group>
         {/* <ToggleColorScheme /> */}
         <Group spacing={25}>
