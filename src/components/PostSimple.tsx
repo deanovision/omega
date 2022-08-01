@@ -30,10 +30,12 @@ const useStyles = createStyles((theme) => ({
     // flexGrow: 1,
   },
   card: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    // backgroundColor:
+    //   theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    background: "inherit",
     maxWidth: "820px",
     margin: "auto",
+    border: "none",
   },
   postedAt: {
     textAlign: "left",
@@ -67,6 +69,7 @@ interface PostSimpleProps {
     name: string;
     image: string;
   };
+  avatarUrl: string;
   postComments: {
     postedAt: string;
     body: string;
@@ -89,7 +92,7 @@ interface PostSimpleProps {
   setPosts: Function;
 }
 
-function PostSimple({ post }: PostSimpleProps) {
+function PostSimple({ post, avatarUrl }: PostSimpleProps) {
   const samplePost = {
     createdAt: "",
     body: "",
@@ -107,12 +110,12 @@ function PostSimple({ post }: PostSimpleProps) {
   }
   const { classes } = useStyles();
   return (
-    <Card withBorder p="xl" radius="sm" className={classes.card}>
+    <Card shadow="xs" p="xl" radius="sm" className={classes.card}>
       <Container className={classes.container}>
         <Group align="initial" className={classes.userHeader}>
           <Avatar
             size="lg"
-            src={postedByAvatarUrl}
+            src={avatarUrl || postedByAvatarUrl}
             alt={postedBy}
             radius="xl"
           />
@@ -164,7 +167,7 @@ function PostSimple({ post }: PostSimpleProps) {
       </Group> */}
       </Container>
       <CommentsModal
-        {...{ modalOpen, setModalOpen }}
+        {...{ modalOpen, setModalOpen, post, samplePost, avatarUrl }}
         content={
           <>
             <AddComment

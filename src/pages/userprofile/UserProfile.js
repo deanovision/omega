@@ -122,7 +122,9 @@ function UserProfile() {
             <UserProfileTabs
               timeline={
                 posts.length > 0 ? (
-                  <PostListSimple {...{ posts, setPosts }} />
+                  <PostListSimple
+                    {...{ avatarUrl: user.avatarUrl, posts, setPosts }}
+                  />
                 ) : (
                   <ContentSkeleton />
                 )
@@ -182,7 +184,9 @@ function UserProfile() {
             <UserProfileTabs
               timeline={
                 posts.length > 0 ? (
-                  <PostListSimple {...{ posts, setPosts }} />
+                  <PostListSimple
+                    {...{ avatarUrl: user.avatarUrl, posts, setPosts }}
+                  />
                 ) : (
                   <ContentSkeleton />
                 )

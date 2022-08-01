@@ -7,7 +7,7 @@ import { createStyles, Card, Divider, MediaQuery } from "@mantine/core";
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#f2f2f4",
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "white",
     maxWidth: "820px",
     margin: "auto",
   },
@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
   },
   cardMobile: {
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#f2f2f4",
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "white",
     maxWidth: "820px",
     margin: "auto",
   },
@@ -29,35 +29,24 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function PostListSimple({ posts }) {
+function PostListSimple({ posts, avatarUrl }) {
   const { classes } = useStyles();
 
   const postList = posts.map((post, index) => {
     return (
       <div key={index} className={classes.comment}>
-        <PostSimple {...{ post }} />
-        <Divider my="sm" />
+        <PostSimple {...{ post, avatarUrl: avatarUrl }} />
+        <Divider my="lg" />
       </div>
     );
   });
   return (
     <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
-        <Card
-          shadow="xl"
-          withBorder
-          radius="sm"
-          pl={0}
-          pr={0}
-          className={classes.cardMobile}
-        >
-          {postList}
-        </Card>
+        <Card className={classes.cardMobile}>{postList}</Card>
       </MediaQuery>
       <MediaQuery smallerThan="sm" styles={classes.desktop}>
-        <Card shadow="xl" withBorder radius="sm" className={classes.card}>
-          {postList}
-        </Card>
+        <div className={classes.card}>{postList}</div>
       </MediaQuery>
     </>
   );

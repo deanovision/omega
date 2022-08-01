@@ -104,6 +104,7 @@ export const addComment = async (postId, post, comment) => {
     //update followers document with latest post inlcuding the comment
     updateDoc(doc(db, "followers", post.uid), {
       recentPosts: arrayUnion(updatedPost.data()),
+      avatarUrl: post.postedByAvatarUrl,
     });
   } catch (err) {
     console.log("Failed at step 3", err.message);

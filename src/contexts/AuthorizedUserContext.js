@@ -1,11 +1,11 @@
-import {createContext, useState, useEffect} from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../firebase/config'
-import { getUserById } from '../firebase/userModel'
+import { createContext, useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { getUserById } from "../firebase/userModel";
 
-const AuthorizedUserContext = createContext()
+const AuthorizedUserContext = createContext();
 
-export const AuthorizedUserProvider = ({children}) => {
+export const AuthorizedUserProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState({
     email: "",
     userName: "",
@@ -14,43 +14,43 @@ export const AuthorizedUserProvider = ({children}) => {
     avatarUrl: "",
     bio: "",
     followers: 0,
-    posts: 0
-  })
-  const [isAuthorized, setIsAuthorized] = useState(false)
-  const [colorScheme, setColorScheme] = useState('light');
+    posts: 0,
+  });
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [colorScheme, setColorScheme] = useState("light");
 
-  useEffect(()=> {
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       // console.log(user)
       if (user) {
         getUserById(user)
           .then((res) => {
             // const {email, displayName, uid} = user
-            setAuthUser({...res})
-            setIsAuthorized(true)
+            setAuthUser({ ...res });
+            setIsAuthorized(true);
           })
-          .catch(err => console.log(err.message))
-      } 
-      else {
-        console.log("user is signed out")
-        setIsAuthorized(false)
+          .catch((err) => console.log(err.message));
+      } else {
+        console.log("user is signed out");
+        setIsAuthorized(false);
       }
     });
-  }, [setAuthUser, setIsAuthorized])
+  }, [setAuthUser, setIsAuthorized]);
 
-    return (
-        <AuthorizedUserContext.Provider 
-        value={{
-          authUser, 
-          setAuthUser, 
-          isAuthorized, 
-          setIsAuthorized, 
-          colorScheme, 
-          setColorScheme
-          }}>
-            {children}
-        </AuthorizedUserContext.Provider>
-    )
-}
+  return (
+    <AuthorizedUserContext.Provider
+      value={{
+        authUser,
+        setAuthUser,
+        isAuthorized,
+        setIsAuthorized,
+        colorScheme,
+        setColorScheme,
+      }}
+    >
+      {children}
+    </AuthorizedUserContext.Provider>
+  );
+};
 
-export default AuthorizedUserContext
+export default AuthorizedUserContext;
