@@ -1,4 +1,5 @@
-import { Textarea, Button, Transition, createStyles } from "@mantine/core";
+import { Textarea, Transition, createStyles, ActionIcon } from "@mantine/core";
+import { ArrowRight } from "tabler-icons-react";
 import React, { useContext } from "react";
 import { useInput } from "../hooks/useInput";
 import { Timestamp } from "firebase/firestore";
@@ -17,13 +18,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function AddComment({
-  visible,
-  setVisible,
-  post,
-  setCommentsList,
-  commentsList,
-}) {
+function AddComment({ visible, post, setCommentsList, commentsList }) {
   const { authUser } = useContext(AuthorizedUserContext);
   const { setNotificationOpen, setMessage } = useContext(NotificationContext);
   const initialValue = {
@@ -42,22 +37,10 @@ function AddComment({
       addComment(post.postId, post, input);
       setCommentsList([...commentsList, input]);
       setInput(initialValue);
-      setVisible(false);
       setNotificationOpen(true);
       setMessage("Comment added");
-      // const updatedComments = commentsList;
-      // updatedComments.forEach((comment) => {
-      //   if (postItem.postId === post.postId) {
-      //     console.log(postItem.postId === post.postId);
-      //     return { ...postItem, comments: [...postItem.comments, input] };
-      //   }
-
-      // });
-      // console.log();
-      // let thing = JSON.parse(JSON.stringify(updatedPosts));
     }
   );
-
   return (
     <Transition
       mounted={visible}
@@ -69,20 +52,25 @@ function AddComment({
         <div className={classes.container} style={styles}>
           <div>
             <Textarea
+              mb={25}
               placeholder="Add a comment"
               required
               name="body"
               onChange={handleChanges}
               value={input.body}
+              rightSection={
+                <ActionIcon
+                  onClick={handleSubmit}
+                  size={32}
+                  radius="xl"
+                  color="blue"
+                  variant="filled"
+                  mr={5}
+                >
+                  <ArrowRight />
+                </ActionIcon>
+              }
             />
-            <Button
-              className={classes.button}
-              onClick={handleSubmit}
-              fullWidth
-              mt="xl"
-            >
-              Submit
-            </Button>
           </div>
         </div>
       )}

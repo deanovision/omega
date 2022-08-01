@@ -1,15 +1,19 @@
 // import CommentSimple from './CommentSimple.tsx'
 import PostSimple from "./PostSimple.tsx";
-import { relativeTime } from "../utils/dummyData";
 import { createStyles, Card, Divider, MediaQuery } from "@mantine/core";
-import { Timestamp } from "firebase/firestore";
+// import { Timestamp } from "firebase/firestore";
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#f2f2f4",
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "white",
     minWidth: "820px",
     margin: "auto",
+    // // background: "rgba(255, 255, 255, 0.01)",
+    // // boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    // // backdropFilter: "blur(12.6px)",
+    // backgroundColor: "inherit",
+    border: "none",
   },
   mobile: {
     display: "none",
@@ -30,11 +34,13 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function RecentPostList({ posts, postComments }) {
+  console.log(posts);
   const { classes } = useStyles();
   const recentPosts = [];
   posts.forEach((post) => {
+    const avatarUrl = post.avatarUrl;
     post.recentPosts.forEach((post) => {
-      recentPosts.push(post);
+      recentPosts.push({ ...post, avatarUrl });
     });
   });
   const sortedPosts = recentPosts.sort(
@@ -42,15 +48,15 @@ function RecentPostList({ posts, postComments }) {
   );
   // console.log("SORTED POSTS ========>", sortedPosts)
   const postList = sortedPosts.map((post, index) => {
-    const postCreatedAt = new Timestamp(
-      post.createdAt.seconds,
-      post.createdAt.nanoseconds
-    ).toDate();
+    // const postCreatedAt = new Timestamp(
+    //   post.createdAt.seconds,
+    //   post.createdAt.nanoseconds
+    // ).toDate();
     // console.log("CREATED AT ======>",Number(postCreatedAt))
     return (
       <div key={index} className={classes.comment}>
-        <PostSimple {...{ post }} />
-        <Divider my="sm" />
+        <PostSimple {...{ post, avatarUrl: post.avatarUrl }} />
+        <Divider my="lg" />
       </div>
     );
   });
@@ -58,7 +64,7 @@ function RecentPostList({ posts, postComments }) {
     <>
       <MediaQuery largerThan="sm" styles={classes.mobile}>
         <Card
-          shadow="xl"
+          shadow="xs"
           withBorder
           radius="sm"
           pl={0}
@@ -69,7 +75,7 @@ function RecentPostList({ posts, postComments }) {
         </Card>
       </MediaQuery>
       <MediaQuery smallerThan="sm" styles={classes.desktop}>
-        <Card shadow="xl" withBorder radius="sm" className={classes.card}>
+        <Card shadow="xs" withBorder radius="sm" className={classes.card}>
           {postList}
         </Card>
       </MediaQuery>

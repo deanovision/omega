@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CommentSimple from "./CommentSimple.tsx";
 import { formatTimestamp } from "../utils/helperFunctions";
 import { createStyles, MediaQuery } from "@mantine/core";
