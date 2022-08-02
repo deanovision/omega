@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   createStyles,
   Text,
@@ -6,16 +6,17 @@ import {
   Group,
   Card,
   ActionIcon,
-  Stack,
   Container,
 } from "@mantine/core";
-import { ThumbUp, RotateClockwise2, Message2 } from "tabler-icons-react";
+import { ThumbUp, Message2, Trash } from "tabler-icons-react";
 import CommentListSimple from "./CommentListSimple";
 import CommentsModal from "./CommentsModal";
 import { formatTimestamp } from "../utils/helperFunctions";
+import { deletePost } from "../firebase/postModel";
+import AddComment from "./AddComment.js";
+import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 // import { relativeTime, loremIpsum } from '../utils/dummyData';
 // import PostListSimple from './PostListSimple';
-import AddComment from "./AddComment.js";
 // import { useClickOutside } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
@@ -27,6 +28,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     display: "flex",
     justifyContent: "space-between",
+    flexDirection: "column",
     // flexGrow: 1,
   },
   card: {
@@ -42,7 +44,10 @@ const useStyles = createStyles((theme) => ({
   },
   engagement: {
     paddingTop: 10,
-    marginLeft: -10,
+    display: "flex",
+    // justifyContent: "space-around",
+    marginLeft: "auto",
+    // marginLeft: -10,
   },
   icons: {
     color: theme.colorScheme === "dark" ? "#FFF" : theme.colors.gray[7],
@@ -80,6 +85,8 @@ interface PostSimpleProps {
   }[];
   post: {
     comments: {}[];
+    uid: string;
+    postId: string;
     createdAt: {
       seconds: Number;
       nanoseconds: Number;
@@ -88,11 +95,21 @@ interface PostSimpleProps {
     postedBy: string;
     postedByAvatarUrl: string;
   };
-  posts: {}[];
+  posts: {
+    comments: {}[];
+    postId: string;
+    createdAt: {
+      seconds: Number;
+      nanoseconds: Number;
+    };
+    body: string;
+    postedBy: string;
+    postedByAvatarUrl: string;
+  }[];
   setPosts: Function;
 }
 
-function PostSimple({ post, avatarUrl }: PostSimpleProps) {
+function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
   const samplePost = {
     createdAt: "",
     body: "",
@@ -102,15 +119,22 @@ function PostSimple({ post, avatarUrl }: PostSimpleProps) {
   const [commentsList, setCommentsList] = useState(post.comments);
   const [thumbsUp, setThumbsUp] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const { authUser } = useContext(AuthorizedUserContext);
   const { createdAt, body, postedBy, postedByAvatarUrl } = post || samplePost;
   // const clickOutsideRef = useClickOutside(() => setVisible(false));
 
   function handleEngagement() {
     return thumbsUp ? classes.liked : "icons";
   }
+  const updatePosts = () => {
+    let updatedList = posts.filter((currentPost, i) => {
+      return currentPost.postId !== post.postId;
+    });
+    setPosts(updatedList);
+  };
   const { classes } = useStyles();
   return (
-    <Card shadow="xs" p="xl" radius="sm" className={classes.card}>
+    <Card p="sm" radius="sm" className={classes.card}>
       <Container className={classes.container}>
         <Group align="initial" className={classes.userHeader}>
           <Avatar
@@ -132,16 +156,17 @@ function PostSimple({ post, avatarUrl }: PostSimpleProps) {
             </Text>
           </div>
         </Group>
-        <Stack className={classes.engagement} spacing={0}>
+        <Group className={classes.engagement} spacing={0}>
           <ActionIcon size="xl" radius="lg">
-            <div>
-              <Message2
-                strokeWidth={1}
-                size={36}
-                className={classes.icons}
-                onClick={() => setModalOpen(true)}
-              />
-            </div>
+            {/* <Group noWrap> */}
+            <Message2
+              strokeWidth={1}
+              size={36}
+              className={classes.icons}
+              onClick={() => setModalOpen(true)}
+            />
+            {/* <Text>{commentsList.length > 0 && commentsList.length}</Text> */}
+            {/* </Group> */}
           </ActionIcon>
           <ActionIcon size="xl" radius="lg">
             <div>
@@ -153,16 +178,19 @@ function PostSimple({ post, avatarUrl }: PostSimpleProps) {
               />
             </div>
           </ActionIcon>
-          <ActionIcon size="xl" radius="lg">
-            <div>
-              <RotateClockwise2
-                strokeWidth={1}
-                size={36}
-                className={classes.icons}
-              />
-            </div>
-          </ActionIcon>
-        </Stack>
+          {authUser.uid === post.uid && (
+            <ActionIcon size="xl" radius="lg">
+              <div>
+                <Trash
+                  strokeWidth={1}
+                  size={36}
+                  className={classes.icons}
+                  onClick={() => deletePost(post, updatePosts)}
+                />
+              </div>
+            </ActionIcon>
+          )}
+        </Group>
         {/* </div>
       </Group> */}
       </Container>

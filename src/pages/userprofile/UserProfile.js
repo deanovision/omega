@@ -4,6 +4,7 @@ import PostListSimple from "../../components/PostListSimple";
 import { fetchUser } from "../../firebase/userModel";
 import { fetchPostsByUserId } from "../../firebase/postModel";
 import UserProfileTabs from "../../components/UserProfileTabs.tsx";
+import PostModal from "../../components/PostModal.tsx";
 import { Notebook, Users } from "tabler-icons-react";
 import {
   Container,
@@ -112,11 +113,14 @@ function UserProfile() {
                 <Text align="left" size="sm" color="dimmed">
                   {user?.bio}
                 </Text>
-                {uid === authUser.uid ? (
-                  <UpdateProfileModal align={"center"} user={user} />
-                ) : (
-                  <FollowUser />
-                )}
+                <Group mt={10}>
+                  {uid === authUser.uid ? (
+                    <UpdateProfileModal align={"center"} user={user} />
+                  ) : (
+                    <FollowUser />
+                  )}
+                  <PostModal />
+                </Group>
               </Container>
             </Card>
             <UserProfileTabs
@@ -174,11 +178,14 @@ function UserProfile() {
                 <Text align="left" size="sm" color="dimmed">
                   {user?.bio}
                 </Text>
-                {uid === authUser.uid ? (
-                  <UpdateProfileModal align={"left"} user={user} />
-                ) : (
-                  <FollowUser />
-                )}
+                <Group mt={10}>
+                  {uid === authUser.uid ? (
+                    <UpdateProfileModal align={"left"} user={user} />
+                  ) : (
+                    <FollowUser />
+                  )}
+                  <PostModal />
+                </Group>
               </Container>
             </Card>
             <UserProfileTabs

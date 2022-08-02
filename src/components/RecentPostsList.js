@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   },
   cardMobile: {
     backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#f2f2f4",
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "white",
     maxWidth: "820px",
     margin: "auto",
   },
