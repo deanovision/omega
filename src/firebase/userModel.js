@@ -50,17 +50,6 @@ export const updateUser = async (user) => {
   } catch (err) {
     console.log(err.message);
   }
-  // setDoc(userDocRef, user)
-  //   .then(() => {
-  //       console.log("success, user has been added", user.uid)
-  //       window.location.reload()
-  //   })
-  //   .catch(err => {
-  //       console.error("Error adding document", err)
-  //   })
-  //   updateDoc(followersDocRef, {
-  //     avatarUrl: user.avatarUrl,
-  //   })
 };
 
 export const getUserById = (user) => {

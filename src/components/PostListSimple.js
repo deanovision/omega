@@ -29,13 +29,12 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function PostListSimple({ posts, avatarUrl }) {
+function PostListSimple({ posts, setPosts, avatarUrl }) {
   const { classes } = useStyles();
-
   const postList = posts.map((post, index) => {
     return (
       <div key={index} className={classes.comment}>
-        <PostSimple {...{ post, avatarUrl: avatarUrl }} />
+        <PostSimple {...{ post, posts, setPosts, avatarUrl: avatarUrl }} />
         <Divider my="lg" />
       </div>
     );
