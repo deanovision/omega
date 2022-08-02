@@ -6,7 +6,6 @@ import {
   Group,
   Card,
   ActionIcon,
-  Stack,
   Container,
 } from "@mantine/core";
 import { ThumbUp, Message2, Trash } from "tabler-icons-react";
@@ -29,6 +28,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     display: "flex",
     justifyContent: "space-between",
+    flexDirection: "column",
     // flexGrow: 1,
   },
   card: {
@@ -44,7 +44,10 @@ const useStyles = createStyles((theme) => ({
   },
   engagement: {
     paddingTop: 10,
-    marginLeft: -10,
+    display: "flex",
+    // justifyContent: "space-around",
+    marginLeft: "auto",
+    // marginLeft: -10,
   },
   icons: {
     color: theme.colorScheme === "dark" ? "#FFF" : theme.colors.gray[7],
@@ -131,7 +134,7 @@ function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
   };
   const { classes } = useStyles();
   return (
-    <Card shadow="xs" p="xl" radius="sm" className={classes.card}>
+    <Card p="sm" radius="sm" className={classes.card}>
       <Container className={classes.container}>
         <Group align="initial" className={classes.userHeader}>
           <Avatar
@@ -153,16 +156,17 @@ function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
             </Text>
           </div>
         </Group>
-        <Stack className={classes.engagement} spacing={0}>
+        <Group className={classes.engagement} spacing={0}>
           <ActionIcon size="xl" radius="lg">
-            <div>
-              <Message2
-                strokeWidth={1}
-                size={36}
-                className={classes.icons}
-                onClick={() => setModalOpen(true)}
-              />
-            </div>
+            {/* <Group noWrap> */}
+            <Message2
+              strokeWidth={1}
+              size={36}
+              className={classes.icons}
+              onClick={() => setModalOpen(true)}
+            />
+            {/* <Text>{commentsList.length > 0 && commentsList.length}</Text> */}
+            {/* </Group> */}
           </ActionIcon>
           <ActionIcon size="xl" radius="lg">
             <div>
@@ -186,7 +190,7 @@ function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
               </div>
             </ActionIcon>
           )}
-        </Stack>
+        </Group>
         {/* </div>
       </Group> */}
       </Container>

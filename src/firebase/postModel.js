@@ -15,7 +15,6 @@ import {
   arrayRemove,
   writeBatch,
 } from "firebase/firestore";
-import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 
 export const addPost = (uid, post, callback) => {
   addDoc(collection(db, "posts"), post)
@@ -23,6 +22,7 @@ export const addPost = (uid, post, callback) => {
       console.log("success, post has been added", res.id);
       callback();
       updateRecentPosts(uid, post, res.id);
+      //   window.location.reload()
     })
     .catch((err) => {
       console.error("Error adding document", err);
@@ -38,8 +38,8 @@ export const updateRecentPosts = (uid, post, postId) => {
     },
     { merge: true }
   )
-    .then((res) => {
-      console.log("success, post has been added to recent posts", res.id);
+    .then(() => {
+      console.log("success, post has been added to recent posts");
     })
     .catch((err) => {
       console.error("Error adding document", err);
