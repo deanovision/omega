@@ -157,33 +157,33 @@ function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
           </div>
         </Group>
         <Group className={classes.engagement} spacing={0}>
-          <ActionIcon size="xl" radius="lg">
+          <ActionIcon size="md" radius="lg">
             {/* <Group noWrap> */}
             <Message2
               strokeWidth={1}
-              size={36}
+              size={25}
               className={classes.icons}
               onClick={() => setModalOpen(true)}
             />
             {/* <Text>{commentsList.length > 0 && commentsList.length}</Text> */}
             {/* </Group> */}
           </ActionIcon>
-          <ActionIcon size="xl" radius="lg">
+          <ActionIcon size="md" radius="lg">
             <div>
               <ThumbUp
                 strokeWidth={1}
-                size={36}
+                size={25}
                 className={handleEngagement()}
                 onClick={() => setThumbsUp(!thumbsUp)}
               />
             </div>
           </ActionIcon>
           {authUser.uid === post.uid && (
-            <ActionIcon size="xl" radius="lg">
+            <ActionIcon size="md" radius="lg">
               <div>
                 <Trash
                   strokeWidth={1}
-                  size={36}
+                  size={25}
                   className={classes.icons}
                   onClick={() => deletePost(post, updatePosts)}
                 />
