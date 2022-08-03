@@ -9,6 +9,7 @@ import {
   Container,
 } from "@mantine/core";
 import { ThumbUp, Message2, Trash } from "tabler-icons-react";
+import { Link } from "react-router-dom";
 import CommentListSimple from "./CommentListSimple";
 import CommentsModal from "./CommentsModal";
 import { formatTimestamp } from "../utils/helperFunctions";
@@ -30,6 +31,10 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     flexDirection: "column",
     // flexGrow: 1,
+  },
+  links: {
+    textDecoration: "none",
+    color: "inherit",
   },
   card: {
     // backgroundColor:
@@ -137,16 +142,20 @@ function PostSimple({ post, posts, setPosts, avatarUrl }: PostSimpleProps) {
     <Card p="sm" radius="sm" className={classes.card}>
       <Container className={classes.container}>
         <Group align="initial" className={classes.userHeader}>
-          <Avatar
-            size="lg"
-            src={avatarUrl || postedByAvatarUrl}
-            alt={postedBy}
-            radius="xl"
-          />
+          <Link className={classes.links} to={`/auth/users/${post.uid}`}>
+            <Avatar
+              size="lg"
+              src={avatarUrl || postedByAvatarUrl}
+              alt={postedBy}
+              radius="xl"
+            />
+          </Link>
           <div>
-            <Text weight={700} size="sm">
-              {postedBy && postedBy}
-            </Text>
+            <Link className={classes.links} to={`/auth/users/${post.uid}`}>
+              <Text weight={700} size="sm">
+                {postedBy && postedBy}
+              </Text>
+            </Link>
             <Text className={classes.postedAt} size="xs" color="dimmed">
               {createdAt &&
                 formatTimestamp(createdAt.seconds, createdAt.nanoseconds)}
