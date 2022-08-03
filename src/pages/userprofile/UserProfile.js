@@ -103,7 +103,7 @@ function UserProfile() {
                 <Group mb={10} noWrap spacing={10} mt={10}>
                   <Notebook size={20} className={classes.icon} />
                   <Text size="sm" color="dimmed">
-                    {user?.posts}
+                    {posts.length}
                   </Text>
                   <Users size={20} className={classes.icon} />
                   <Text size="sm" color="dimmed">
@@ -115,11 +115,13 @@ function UserProfile() {
                 </Text>
                 <Group mt={10}>
                   {uid === authUser.uid ? (
-                    <UpdateProfileModal align={"center"} user={user} />
+                    <>
+                      <UpdateProfileModal align={"center"} user={user} />
+                      <PostModal />
+                    </>
                   ) : (
                     <FollowUser />
                   )}
-                  <PostModal />
                 </Group>
               </Container>
             </Card>
@@ -180,11 +182,13 @@ function UserProfile() {
                 </Text>
                 <Group mt={10}>
                   {uid === authUser.uid ? (
-                    <UpdateProfileModal align={"left"} user={user} />
+                    <>
+                      <UpdateProfileModal align={"center"} user={user} />
+                      <PostModal />
+                    </>
                   ) : (
                     <FollowUser />
                   )}
-                  <PostModal />
                 </Group>
               </Container>
             </Card>
