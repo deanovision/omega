@@ -1,20 +1,42 @@
 {
-  "short_name": "Omega Social",
   "name": "Omega Social",
+  "short_name": "Omega Social",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/login",
   "icons": [
+    {
+      "src": "maskable_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "omegalogo512.png",
+      "src": "OMEGA512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "OMEGA384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "OMEGA256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "OMEGA192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
