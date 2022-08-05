@@ -7,7 +7,7 @@ import PageLinksContext from "./contexts/PageLinksContext";
 import { Routes, Route } from "react-router-dom";
 import SimpleFooter from "./components/SimpleFooter.tsx";
 import Home from "./pages/home/Home";
-// import Login from './pages/login/Login.tsx';
+import Login from "./pages/login/Login.tsx";
 // import SignUp from './pages/signup/SignUp.tsx';
 // import ResetPassword from './pages/resetpassword/ResetPassword.tsx';
 // import Dashboard from "./pages/dashboard/Dashboard";
@@ -17,7 +17,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NavBarZeroMargin from "./components/NavBarZeroMargin.tsx";
 import SimpleNotification from "./components/SimpleNotification";
 import "./App.css";
-const Login = lazy(() => import("./pages/login/Login.tsx"));
+// const Login = lazy(() => import("./pages/login/Login.tsx"));
 const SignUp = lazy(() => import("./pages/signup/SignUp.tsx"));
 const ResetPassword = lazy(() =>
   import("./pages/resetpassword/ResetPassword.tsx")
