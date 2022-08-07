@@ -182,10 +182,12 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         </Group>
         {/* <ToggleColorScheme /> */}
         <Group spacing={25}>
-          {/* {isAuthorized ? <PostModal /> : null} */}
-          <ActionIcon size="lg">
-            <Mail onClick={() => toggleMessagesOpened()} size={20} />
-          </ActionIcon>
+          {isAuthorized ? (
+            <ActionIcon size="lg">
+              <Mail onClick={() => toggleMessagesOpened()} size={20} />
+            </ActionIcon>
+          ) : null}
+
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Button radius="xl" onClick={(e) => handleAuth(e)}>
               {isAuthorized ? "Logout" : "Login"}
