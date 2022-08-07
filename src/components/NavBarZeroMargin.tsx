@@ -10,8 +10,10 @@ import {
   Image,
   Button,
   MediaQuery,
+  ActionIcon,
 } from "@mantine/core";
 import { logout } from "../firebase/authorizeUsers";
+import { Mail } from "tabler-icons-react";
 import { useBooleanToggle } from "@mantine/hooks";
 import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +48,21 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.largerThan("sm")]: {
       display: "none",
     },
+  },
+  messages: {
+    position: "absolute",
+    top: HEADER_HEIGHT,
+    left: "50%",
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: "hidden",
+
+    // [theme.fn.largerThan("sm")]: {
+    //   display: "none",
+    // },
   },
 
   header: {
@@ -121,6 +138,7 @@ interface HeaderResponsiveProps {
 
 export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
+  const [messagesOpened, toggleMessagesOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const { isAuthorized, setIsAuthorized } = useContext(AuthorizedUserContext);
@@ -165,6 +183,9 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         {/* <ToggleColorScheme /> */}
         <Group spacing={25}>
           {/* {isAuthorized ? <PostModal /> : null} */}
+          <ActionIcon size="lg">
+            <Mail onClick={() => toggleMessagesOpened()} size={20} />
+          </ActionIcon>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Button radius="xl" onClick={(e) => handleAuth(e)}>
               {isAuthorized ? "Logout" : "Login"}
@@ -177,7 +198,17 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
             size="sm"
           />
         </Group>
-
+        <Transition
+          transition="pop-top-right"
+          duration={200}
+          mounted={messagesOpened}
+        >
+          {(styles) => (
+            <Paper className={classes.messages} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
