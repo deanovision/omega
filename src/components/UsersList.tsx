@@ -55,7 +55,10 @@ function UsersList({ data }: UsersStackProps) {
   }, []);
 
   const filteredUsers = users.filter((user) => {
-    return user.name.toLowerCase().includes(search.toLowerCase());
+    return (
+      user.name !== null &&
+      user.name.toLowerCase().includes(search.toLowerCase())
+    );
   });
   const rows = filteredUsers.map((item) => (
     <tr key={item.uid}>
