@@ -6,6 +6,7 @@ import { fetchPostsByUserId } from "../../firebase/postModel";
 import UserProfileTabs from "../../components/UserProfileTabs.tsx";
 import PostModal from "../../components/PostModal.tsx";
 import { Notebook, Users } from "tabler-icons-react";
+// import { addMessage } from "../../firebase/messageModel";
 import {
   Container,
   Group,
