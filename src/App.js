@@ -17,6 +17,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import NavBarZeroMargin from "./components/NavBarZeroMargin.tsx";
 import SimpleNotification from "./components/SimpleNotification";
 import "./App.css";
+import DirectMessages from "./pages/directmessages/DirectMessages";
 // const Login = lazy(() => import("./pages/login/Login.tsx"));
 const SignUp = lazy(() => import("./pages/signup/SignUp.tsx"));
 const ResetPassword = lazy(() =>
@@ -25,6 +26,9 @@ const ResetPassword = lazy(() =>
 const UserProfile = lazy(() => import("./pages/userprofile/UserProfile"));
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const FindUsers = lazy(() => import("./pages/findusers/FindUsers"));
+// const DirectMessages = lazy(() =>
+//   import("./pages/directmessages/DirectMessages")
+// );
 
 function App() {
   const { colorScheme, setColorScheme, authUser } = useContext(
@@ -64,6 +68,10 @@ function App() {
                 {/* <Route element={<UserProfile />} path="users" /> */}
                 <Route element={<Dashboard />} path="dashboard" />
                 <Route element={<FindUsers />} path="search-users" />
+                <Route
+                  element={<DirectMessages />}
+                  path="users/directmessages/:uid"
+                />
                 {/* <Route element={<SetupProfile />} path="setup-profile" /> */}
               </Route>
               <Route element={<Login />} path="/login" />

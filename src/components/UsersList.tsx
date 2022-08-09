@@ -60,25 +60,25 @@ function UsersList({ data }: UsersStackProps) {
       user.name.toLowerCase().includes(search.toLowerCase())
     );
   });
-  const rows = filteredUsers.map((item) => (
-    <tr key={item.uid}>
+  const rows = filteredUsers.map((user) => (
+    <tr key={user.uid}>
       <td>
         <Link
           className={classes.container}
           style={{ textDecoration: "none", color: "inherit" }}
-          to={`/auth/users/${item.uid}`}
+          to={`/auth/users/${user.uid}`}
         >
           <Group className={classes.userInfo} spacing="sm">
             <div className={classes.listContainer}>
               <div>
-                <Avatar size={50} src={item.avatarUrl} radius={40} />
+                <Avatar size={50} src={user.avatarUrl} radius={40} />
               </div>
               <div className={classes.textContainer}>
                 <Text size="md" weight={500}>
-                  {item.name}
+                  {user.name}
                 </Text>
                 <Text size="sm" lineClamp={1}>
-                  {item.bio}
+                  {user.bio}
                 </Text>
               </div>
             </div>

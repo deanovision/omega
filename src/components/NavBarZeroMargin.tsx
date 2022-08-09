@@ -18,6 +18,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/omegalogo4.png";
+import DirectMessagesList from "./DirectMessagesList";
 // import PostModal from "./PostModal.tsx";
 // import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 75;
@@ -207,7 +208,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         >
           {(styles) => (
             <Paper className={classes.messages} withBorder style={styles}>
-              {items}
+              <DirectMessagesList />
             </Paper>
           )}
         </Transition>
