@@ -20,22 +20,25 @@ import { sortUids } from "../utils/helperFunctions";
 export const addMessage = async (
   authUser,
   recipient,
-  message = { body: "test" }
+  message = { body: "test" },
+  callback
 ) => {
-  const directMessageDocId = sortUids([authUser.uid, recipient.uid]);
-  const directMessageDocRef = doc(db, "directMessages", directMessageDocId);
-  setDoc(
-    directMessageDocRef,
-    {
-      users: [authUser.uid, recipient.uid],
-      subcollectionRef: await addDoc(
-        collection(db, "directMessages", directMessageDocId, "messages"),
-        {
-          ...message,
-          createdAt: Timestamp.now(),
-        }
-      ),
-    },
-    { merge: true }
-  );
+  try {
+    const directMessageDocId = sortUids([authUser.uid, recipient.uid]);
+    const directMessageDocRef = doc(db, "directMessages", directMessageDocId);
+    setDoc(
+      directMessageDocRef,
+      {
+        users: [authUser.uid, recipient.uid],
+        subcollectionRef: await addDoc(
+          collection(db, "directMessages", directMessageDocId, "messages"),
+          { message }
+        ),
+      },
+      { merge: true }
+    );
+    callback();
+  } catch (err) {
+    console.log(err.message);
+  }
 };
