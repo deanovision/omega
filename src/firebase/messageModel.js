@@ -4,17 +4,11 @@ import {
   doc,
   addDoc,
   collection,
-  arrayUnion,
   Timestamp,
-  getDoc,
   getDocs,
   query,
   where,
   orderBy,
-  collectionGroup,
-  //   updateDoc,
-  //   arrayRemove,
-  //   writeBatch,
 } from "firebase/firestore";
 import { sortUids } from "../utils/helperFunctions";
 import { fetchUser } from "./userModel";
@@ -47,7 +41,6 @@ export const addMessage = async (
   }
 };
 export const getConversations = async (uid, callback) => {
-  console.log(uid, "<===========================");
   try {
     const q1 = query(
       collection(db, "directMessages"),
@@ -72,7 +65,6 @@ export const getConversations = async (uid, callback) => {
       });
       callback([...conversationsArray]);
     });
-    console.log("Conversations Array", conversationsArray);
     return conversationsArray;
   } catch (err) {
     console.log(err.message);
