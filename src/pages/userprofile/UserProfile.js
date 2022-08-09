@@ -6,6 +6,7 @@ import { fetchPostsByUserId } from "../../firebase/postModel";
 import UserProfileTabs from "../../components/UserProfileTabs.tsx";
 import PostModal from "../../components/PostModal.tsx";
 import { Notebook, Users } from "tabler-icons-react";
+import DirectMessageModal from "../../components/DirectMessageModal.tsx";
 // import { addMessage } from "../../firebase/messageModel";
 import {
   Container,
@@ -121,7 +122,10 @@ function UserProfile() {
                       <PostModal />
                     </>
                   ) : (
-                    <FollowUser />
+                    <>
+                      <FollowUser />
+                      <DirectMessageModal {...{ recipient: user }} />
+                    </>
                   )}
                 </Group>
               </Container>
@@ -188,7 +192,10 @@ function UserProfile() {
                       <PostModal />
                     </>
                   ) : (
-                    <FollowUser />
+                    <>
+                      <FollowUser />
+                      <DirectMessageModal {...{ recipient: user }} />
+                    </>
                   )}
                 </Group>
               </Container>

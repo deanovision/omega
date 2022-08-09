@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { Modal, ActionIcon, Group, useMantineTheme } from "@mantine/core";
-import { WritingSign } from "tabler-icons-react";
-import AddPost from "./AddPost";
+import {
+  Modal,
+  ActionIcon,
+  Group,
+  useMantineTheme,
+  Text,
+  Button,
+} from "@mantine/core";
+import { MailForward } from "tabler-icons-react";
+import AddDirectMessage from "./AddDirectMessage";
 
-function PostModal() {
+function DirectMessageModal({ recipient }) {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
 
@@ -19,20 +26,21 @@ function PostModal() {
         radius={25}
         centered
       >
-        <AddPost setOpened={setOpened} />
+        <AddDirectMessage {...{ recipient, setOpened }} />
       </Modal>
       <Group position="center">
-        <ActionIcon
-          size="xl"
-          radius={100}
-          variant="light"
+        <Button
+          size="xs"
+          variant="outline"
+          mt={10}
           color={theme.colors.blue[3]}
           onClick={() => setOpened(true)}
+          leftIcon={<MailForward strokeWidth={1} />}
         >
-          <WritingSign strokeWidth={1} size={50} />
-        </ActionIcon>
+          SEND MESSAGE
+        </Button>
       </Group>
     </>
   );
 }
-export default PostModal;
+export default DirectMessageModal;
