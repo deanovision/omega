@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  ActionIcon,
-  Group,
-  useMantineTheme,
-  Text,
-  Button,
-} from "@mantine/core";
+import { Modal, Group, useMantineTheme, Button } from "@mantine/core";
 import { MailForward } from "tabler-icons-react";
 import AddDirectMessage from "./AddDirectMessage";
 
