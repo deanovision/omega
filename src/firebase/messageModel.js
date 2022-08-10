@@ -71,7 +71,13 @@ export const getConversations = async (uid, callback) => {
   }
 };
 
-export const getMessages = async (conversation, uid) => {
+export const getMessages = async (
+  conversationId,
+  conversation,
+  uid,
+  callback
+) => {
+  console.log(conversation.users, "<==================");
   //Get id of the other party in the conversation
   try {
     const conversationParticipantId = conversation.users.filter(
@@ -79,7 +85,7 @@ export const getMessages = async (conversation, uid) => {
     )[0];
     const conversationParticipant = await fetchUser(conversationParticipantId);
     const { name, avatarUrl } = conversationParticipant;
-    const { conversationId } = conversation;
+    // const { conversationId } = conversation;
     const q2 = query(
       collection(db, "directMessages", conversationId, "messages"),
       where("participants", "array-contains", uid),
@@ -87,9 +93,15 @@ export const getMessages = async (conversation, uid) => {
     );
     let messagesArray = [];
     const messagesQuerySnapshot = await getDocs(q2);
-    messagesQuerySnapshot.forEach((message) =>
-      messagesArray.push({ ...message.data(), avatarUrl, name })
-    );
+    messagesQuerySnapshot.forEach((message) => {
+      messagesArray.push({
+        ...message.data(),
+        avatarUrl,
+        name,
+        messageId: message.id,
+      });
+      callback([...messagesArray]);
+    });
     return messagesArray;
   } catch (err) {
     console.log(err.message);

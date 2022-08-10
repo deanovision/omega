@@ -185,7 +185,12 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
         <Group spacing={25}>
           {isAuthorized ? (
             <ActionIcon size="lg">
-              <Mail onClick={() => toggleMessagesOpened()} size={20} />
+              <Mail
+                onClick={() =>
+                  navigate(`../auth/users/directMessages/${authUser.uid}`)
+                }
+                size={20}
+              />
             </ActionIcon>
           ) : null}
 
@@ -207,9 +212,11 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
           mounted={messagesOpened}
         >
           {(styles) => (
-            <Paper className={classes.messages} withBorder style={styles}>
-              <DirectMessagesList />
-            </Paper>
+            <Paper
+              className={classes.messages}
+              withBorder
+              style={styles}
+            ></Paper>
           )}
         </Transition>
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
