@@ -18,6 +18,7 @@ import NavBarZeroMargin from "./components/NavBarZeroMargin.tsx";
 import SimpleNotification from "./components/SimpleNotification";
 import "./App.css";
 import DirectMessages from "./pages/directmessages/DirectMessages";
+import MessagesList from "./components/MessagesList";
 // const Login = lazy(() => import("./pages/login/Login.tsx"));
 const SignUp = lazy(() => import("./pages/signup/SignUp.tsx"));
 const ResetPassword = lazy(() =>
@@ -70,8 +71,12 @@ function App() {
                 <Route element={<FindUsers />} path="search-users" />
                 <Route
                   element={<DirectMessages />}
-                  path="users/directmessages/:uid"
+                  path="users/directmessages/:uid/*"
                 />
+                {/* <Route
+                  element={<MessagesList />}
+                  path="users/directmessages/:uid/:conversationId"
+                /> */}
                 {/* <Route element={<SetupProfile />} path="setup-profile" /> */}
               </Route>
               <Route element={<Login />} path="/login" />
