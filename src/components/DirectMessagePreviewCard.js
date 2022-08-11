@@ -1,6 +1,4 @@
 import { Avatar, Group, Text, Card } from "@mantine/core";
-import { Routes, Route, Link } from "react-router-dom";
-import MessagesList from "./MessagesList";
 
 function DirectMessagePreviewCard({ conversation, uid }) {
   return (

@@ -8,17 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import SimpleFooter from "./components/SimpleFooter.tsx";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login.tsx";
-// import SignUp from './pages/signup/SignUp.tsx';
-// import ResetPassword from './pages/resetpassword/ResetPassword.tsx';
-// import Dashboard from "./pages/dashboard/Dashboard";
-// import FindUsers from "./pages/findusers/FindUsers";
-// import UserProfile from "./pages/userprofile/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NavBarZeroMargin from "./components/NavBarZeroMargin.tsx";
 import SimpleNotification from "./components/SimpleNotification";
 import "./App.css";
 import DirectMessages from "./pages/directmessages/DirectMessages";
-import MessagesList from "./components/MessagesList";
 // const Login = lazy(() => import("./pages/login/Login.tsx"));
 const SignUp = lazy(() => import("./pages/signup/SignUp.tsx"));
 const ResetPassword = lazy(() =>
@@ -66,18 +60,12 @@ function App() {
               <Route element={<Home />} path="/" />
               <Route element={<ProtectedRoute />} path="/auth">
                 <Route element={<UserProfile />} path="users/:uid" />
-                {/* <Route element={<UserProfile />} path="users" /> */}
                 <Route element={<Dashboard />} path="dashboard" />
                 <Route element={<FindUsers />} path="search-users" />
                 <Route
                   element={<DirectMessages />}
                   path="users/directmessages/:uid/*"
                 />
-                {/* <Route
-                  element={<MessagesList />}
-                  path="users/directmessages/:uid/:conversationId"
-                /> */}
-                {/* <Route element={<SetupProfile />} path="setup-profile" /> */}
               </Route>
               <Route element={<Login />} path="/login" />
               <Route element={<SignUp />} path="/signup" />

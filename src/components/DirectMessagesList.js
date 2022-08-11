@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
+import React from "react";
 import { Container } from "@mantine/core";
-import { getConversations } from "../firebase/messageModel";
 import DirectMessagePreviewCard from "./DirectMessagePreviewCard";
 import { Link } from "react-router-dom";
 
