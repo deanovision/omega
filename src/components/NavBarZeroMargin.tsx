@@ -18,7 +18,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/omegalogo4.png";
-import DirectMessagesList from "./DirectMessagesList";
+// import DirectMessagesList from "./DirectMessagesList";
 // import PostModal from "./PostModal.tsx";
 // import ToggleColorScheme from './ToggleColorScheme.tsx'
 const HEADER_HEIGHT = 75;
@@ -139,7 +139,7 @@ interface HeaderResponsiveProps {
 
 export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
-  const [messagesOpened, toggleMessagesOpened] = useBooleanToggle(false);
+  // const [messagesOpened, toggleMessagesOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
   const { isAuthorized, setIsAuthorized } = useContext(AuthorizedUserContext);
@@ -206,7 +206,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
             size="sm"
           />
         </Group>
-        <Transition
+        {/* <Transition
           transition="pop-top-right"
           duration={200}
           mounted={messagesOpened}
@@ -218,7 +218,7 @@ export function NavBarZeroMargin({ links, authUser }: HeaderResponsiveProps) {
               style={styles}
             ></Paper>
           )}
-        </Transition>
+        </Transition> */}
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} withBorder style={styles}>

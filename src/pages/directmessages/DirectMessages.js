@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthorizedUserContext from "../../contexts/AuthorizedUserContext";
 import { Container, Card } from "@mantine/core";
 import DirectMessagesList from "../../components/DirectMessagesList";
@@ -19,6 +19,7 @@ function DirectMessages() {
         },
       ],
       conversationId: "0",
+      users: [],
     },
   ]);
   useEffect(() => {
