@@ -13,7 +13,6 @@ import NavBarZeroMargin from "./components/NavBarZeroMargin.tsx";
 import SimpleNotification from "./components/SimpleNotification";
 import "./App.css";
 import DirectMessages from "./pages/directmessages/DirectMessages";
-import SampleForm from "./components/SampleForm";
 // const Login = lazy(() => import("./pages/login/Login.tsx"));
 const SignUp = lazy(() => import("./pages/signup/SignUp.tsx"));
 const ResetPassword = lazy(() =>
@@ -71,7 +70,6 @@ function App() {
               <Route element={<Login />} path="/login" />
               <Route element={<SignUp />} path="/signup" />
               <Route element={<ResetPassword />} path="/reset-password" />
-              <Route element={<SampleForm />} path="/sample-form" />
             </Routes>
           </Suspense>
           <SimpleNotification body={message} />
