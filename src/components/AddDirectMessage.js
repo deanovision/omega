@@ -40,7 +40,7 @@ function AddDirectMessage({ setOpened, recipient }) {
   const { input, setInput, handleChanges, handleSubmit } = useInput(
     initialValue,
     () => {
-      addMessage(authUser, recipient, input, () => {
+      addMessage(authUser, recipient.uid, input, () => {
         setOpened(false);
         setMessage("Sent");
         setNotificationOpen(true);

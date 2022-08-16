@@ -53,10 +53,8 @@ export const updateUser = async (user) => {
 };
 
 export const getUserById = (user) => {
-  console.log("get users by ID", user);
   return getDoc(doc(db, "users", user.uid))
     .then((res) => {
-      console.log("users document data", res.data());
       return res.data();
     })
     .catch((err) => console.log("Error getting document:", err));
@@ -65,7 +63,6 @@ export const getUserById = (user) => {
 export const fetchUser = (uid) => {
   return getDoc(doc(db, "users", uid))
     .then((res) => {
-      console.log("users document data", res.data());
       return res.data();
     })
     .catch((err) => console.log("Error getting document:", err));

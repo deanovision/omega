@@ -7,7 +7,7 @@ import UserProfileTabs from "../../components/UserProfileTabs.tsx";
 import PostModal from "../../components/PostModal.tsx";
 import { Notebook, Users } from "tabler-icons-react";
 import DirectMessageModal from "../../components/DirectMessageModal.tsx";
-import { getMessages } from "../../firebase/messageModel";
+// import { getMessages } from "../../firebase/messageModel";
 import {
   Container,
   Group,
@@ -63,9 +63,9 @@ function UserProfile() {
   let navigate = useNavigate;
 
   useEffect(() => {
-    getMessages(uid, (stuff) => {
-      console.log(stuff);
-    });
+    // getMessages(uid, (stuff) => {
+    //   console.log(stuff);
+    // });
     fetchUser(uid)
       .then((res) => {
         setUser({ ...res });
