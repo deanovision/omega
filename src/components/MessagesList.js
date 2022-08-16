@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { uuidv4 as uuid } from "@firebase/util";
+import { Timestamp } from "firebase/firestore";
 // import AuthorizedUserContext from "../contexts/AuthorizedUserContext";
 import { Container } from "@mantine/core";
-import { getMessages } from "../firebase/messageModel";
+import { getMessages, addMessage } from "../firebase/messageModel";
 import { Avatar, Group, Text, Card, Textarea, ActionIcon } from "@mantine/core";
 import { ArrowRight } from "tabler-icons-react";
 import { useInput } from "../hooks/useInput";
@@ -11,10 +12,16 @@ import { useParams } from "react-router-dom";
 import ContentSkeleton from "./ContentSkeleton";
 
 function MessagesList({ conversationsList, authUser }) {
+  const messageRef = useRef();
+  const lastMessage = useMemo(() => {
+    return messageRef.current === undefined ? messageRef.current : undefined;
+  }, [messageRef.current]);
   const initialValue = {
-    messageBy: authUser.name,
-    body: "",
     uid: authUser.uid,
+    body: "",
+    createdAt: Timestamp.now(),
+    messageBy: authUser.name,
+    read: false,
   };
   const { conversationId } = useParams();
   const [messagesList, setMessagesList] = useState([initialValue]);
@@ -34,6 +41,18 @@ function MessagesList({ conversationsList, authUser }) {
     );
     return getCurrentConversation;
   }, [conversationsList, conversationId]);
+  const messageRecipientId = useMemo(() => {
+    if (selectedConversation.length > 0) {
+      const id = selectedConversation[0].users.filter(
+        (id) => id !== authUser.uid
+      );
+      return id[0];
+    }
+  }, [selectedConversation, authUser]);
+  // const messages = useMemo(() => {
+  //   return { ...messagesList };
+  // }, [messagesList]);
+  // console.log("RECIPIENT ID", messageRecipientId);
   useEffect(() => {
     // console.log("SELECTED CONVERSATION", selectedConversation);
     conversationsList.length > 0 &&
@@ -44,12 +63,11 @@ function MessagesList({ conversationsList, authUser }) {
         setMessagesList
       );
   }, [authUser, conversationsList, conversationId, selectedConversation]);
-  // console.log("MESSAGES LIST", messagesList);
 
+  console.log(messageRef.current);
   const content =
     selectedConversation[0] && selectedConversation[0].avatarUrl !== "" ? (
-      messagesList.map((message) => {
-        console.log("MESSAGE", message);
+      messagesList.map((message, index) => {
         return (
           <Card
             key={message.messageId === undefined ? uuid() : message.messageId}
@@ -63,7 +81,16 @@ function MessagesList({ conversationsList, authUser }) {
                 }
                 radius={100}
               />
-              <Text size="sm" lineClamp={1}>
+              <Text
+                size="sm"
+                lineClamp={1}
+                ref={
+                  messagesList.length !== undefined &&
+                  messagesList.length - 1 === index
+                    ? messageRef
+                    : null
+                }
+              >
                 {message.body}
               </Text>
             </Group>
@@ -100,7 +127,9 @@ function MessagesList({ conversationsList, authUser }) {
         value={input.body}
         rightSection={
           <ActionIcon
-            onClick={handleSubmit}
+            onClick={(e) =>
+              handleSubmit(e, addMessage(authUser, messageRecipientId, input))
+            }
             size={32}
             radius="xl"
             color="blue"

@@ -5,21 +5,25 @@ import { AuthorizedUserProvider } from "./contexts/AuthorizedUserContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
 import { PageLinksProvider } from "./contexts/PageLinksContext";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthorizedUserProvider>
-        <PageLinksProvider>
-          <NotificationProvider>
-            <App />
-          </NotificationProvider>
-        </PageLinksProvider>
-      </AuthorizedUserProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AuthorizedUserProvider>
+          <PageLinksProvider>
+            <NotificationProvider>
+              <App />
+            </NotificationProvider>
+          </PageLinksProvider>
+        </AuthorizedUserProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
